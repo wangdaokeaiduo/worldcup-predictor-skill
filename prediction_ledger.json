@@ -1,0 +1,278 @@
+{
+  "version": "1.0",
+  "predictions": [
+    {
+      "id": 1,
+      "timestamp": "2026-06-19T09:38:07.365187",
+      "match": "韩国 vs 墨西哥",
+      "team_a": "韩国",
+      "team_b": "墨西哥",
+      "predicted_score": {
+        "team_a": 1,
+        "team_b": 1
+      },
+      "predicted_probs": {
+        "win_a": 0.352,
+        "draw": 0.238,
+        "win_b": 0.41
+      },
+      "confidence": 3,
+      "key_reasoning": "墨西哥控球优势+主场之利被韩国钢铁意志和孙兴慜反击化解，1-1平局",
+      "dimension_weights_used": {
+        "player_status": 0.25,
+        "recent_form": 0.25,
+        "head_to_head": 0.15,
+        "tactical_fit": 0.15,
+        "odds_market": 0.1,
+        "elo_ranking": 0.05,
+        "external_factors": 0.05
+      },
+      "actual_result": {
+        "team_a": 0,
+        "team_b": 1
+      },
+      "reflection": {
+        "timestamp": "2026-06-19T16:41:02.004996",
+        "prediction_accuracy": 35,
+        "what_was_right": [
+          "✅ 墨西哥进球数完全命中 (1球)",
+          "✅ 总进球数预测接近 (预测2球 vs 实际1球)"
+        ],
+        "what_went_wrong": [
+          "❌ 胜平负方向判断错误 (预测: draw, 实际: win_b)"
+        ],
+        "root_causes": [
+          "可能高估/低估了某支球队的实力或状态"
+        ],
+        "dimension_adjustments": {}
+      },
+      "score": 35
+    },
+    {
+      "id": 2,
+      "timestamp": "2026-06-19T09:54:20.226847",
+      "match": "韩国 vs 墨西哥",
+      "team_a": "韩国",
+      "team_b": "墨西哥",
+      "predicted_score": {
+        "team_a": 0,
+        "team_b": 1
+      },
+      "predicted_probs": {
+        "win_a": 0.328,
+        "draw": 0.242,
+        "win_b": 0.43
+      },
+      "confidence": 4,
+      "key_reasoning": "十二维度显示墨西哥在门将+替补+主场三个新维度全面占优，70分钟阵地战1-0制胜",
+      "dimension_weights_used": {
+        "player_status": 0.25,
+        "recent_form": 0.25,
+        "head_to_head": 0.15,
+        "tactical_fit": 0.15,
+        "odds_market": 0.1,
+        "elo_ranking": 0.05,
+        "external_factors": 0.05,
+        "goalkeeper": 0.05,
+        "fatigue_schedule": 0.05,
+        "set_pieces": 0.05,
+        "match_stakes": 0.05,
+        "squad_depth": 0.05
+      },
+      "actual_result": {
+        "team_a": 0,
+        "team_b": 1
+      },
+      "reflection": {
+        "timestamp": "2026-06-19T16:41:03.828783",
+        "prediction_accuracy": 100,
+        "what_was_right": [
+          "✅ 胜平负方向判断正确 (预测: win_b, 实际: win_b)",
+          "✅ 韩国进球数完全命中 (0球)",
+          "✅ 墨西哥进球数完全命中 (1球)",
+          "✅ 总进球数预测接近 (预测1球 vs 实际1球)"
+        ],
+        "what_went_wrong": [],
+        "root_causes": [],
+        "dimension_adjustments": {}
+      },
+      "score": 100
+    },
+    {
+      "id": 3,
+      "timestamp": "2026-06-19T11:57:45.249926",
+      "match": "美国 vs 澳大利亚",
+      "team_a": "美国",
+      "team_b": "澳大利亚",
+      "predicted_score": {
+        "team_a": 2,
+        "team_b": 1
+      },
+      "predicted_probs": {
+        "win_a": 0.55,
+        "draw": 0.25,
+        "win_b": 0.2
+      },
+      "confidence": 4,
+      "key_reasoning": "主场优势明显，普利西奇大概率带伤出战，但澳大利亚防守反击与高空球有威胁",
+      "dimension_weights_used": {
+        "player_status": 0.25,
+        "recent_form": 0.25,
+        "head_to_head": 0.15,
+        "tactical_fit": 0.15,
+        "odds_market": 0.1,
+        "elo_ranking": 0.05,
+        "external_factors": 0.05,
+        "goalkeeper": 0.05,
+        "fatigue_schedule": 0.05,
+        "set_pieces": 0.05,
+        "match_stakes": 0.05,
+        "squad_depth": 0.05
+      },
+      "actual_result": null,
+      "reflection": null,
+      "score": null
+    },
+    {
+      "id": 4,
+      "timestamp": "2026-06-19T15:49:58.678330",
+      "match": "苏格兰 vs 摩洛哥",
+      "team_a": "苏格兰",
+      "team_b": "摩洛哥",
+      "predicted_score": {
+        "team_a": 0,
+        "team_b": 1
+      },
+      "predicted_probs": {
+        "win_a": 33.0,
+        "draw": 26.0,
+        "win_b": 41.0
+      },
+      "confidence": 4,
+      "key_reasoning": "摩洛哥反击速度撕裂苏格兰3-5-2翼卫前压漏洞，Hakimi闪电突击决定比赛",
+      "dimension_weights_used": {
+        "player_status": 0.25,
+        "recent_form": 0.25,
+        "head_to_head": 0.15,
+        "tactical_fit": 0.15,
+        "odds_market": 0.1,
+        "elo_ranking": 0.05,
+        "external_factors": 0.05,
+        "goalkeeper": 0.05,
+        "fatigue_schedule": 0.05,
+        "set_pieces": 0.05,
+        "match_stakes": 0.05,
+        "squad_depth": 0.05
+      },
+      "actual_result": null,
+      "reflection": null,
+      "score": null
+    },
+    {
+      "id": 5,
+      "timestamp": "2026-06-19T15:59:18.623891",
+      "match": "巴西 vs 海地",
+      "team_a": "巴西",
+      "team_b": "海地",
+      "predicted_score": {
+        "team_a": 3,
+        "team_b": 0
+      },
+      "predicted_probs": {
+        "win_a": 90.0,
+        "draw": 6.0,
+        "win_b": 4.0
+      },
+      "confidence": 5,
+      "key_reasoning": "巴西个人天赋碾压海地密集防守，安切洛蒂不允许同一错误犯两次，Vinícius闪电突破撕裂铁桶阵",
+      "dimension_weights_used": {
+        "player_status": 0.25,
+        "recent_form": 0.25,
+        "head_to_head": 0.15,
+        "tactical_fit": 0.15,
+        "odds_market": 0.1,
+        "elo_ranking": 0.05,
+        "external_factors": 0.05,
+        "goalkeeper": 0.05,
+        "fatigue_schedule": 0.05,
+        "set_pieces": 0.05,
+        "match_stakes": 0.05,
+        "squad_depth": 0.05
+      },
+      "actual_result": null,
+      "reflection": null,
+      "score": null
+    }
+  ],
+  "evolution_insights": [
+    {
+      "timestamp": "2026-06-19T16:41:02.005026",
+      "match": "韩国 vs 墨西哥",
+      "score": 35,
+      "weights_after": {
+        "player_status": 0.2061,
+        "recent_form": 0.2061,
+        "head_to_head": 0.1145,
+        "tactical_fit": 0.1145,
+        "odds_market": 0.0763,
+        "elo_ranking": 0.0229,
+        "external_factors": 0.0382,
+        "goalkeeper": 0.0534,
+        "fatigue_schedule": 0.0382,
+        "set_pieces": 0.0382,
+        "match_stakes": 0.0534,
+        "squad_depth": 0.0382
+      },
+      "lesson": [
+        "可能高估/低估了某支球队的实力或状态"
+      ]
+    },
+    {
+      "timestamp": "2026-06-19T16:41:03.828816",
+      "match": "韩国 vs 墨西哥",
+      "score": 100,
+      "weights_after": {
+        "player_status": 0.2061,
+        "recent_form": 0.2061,
+        "head_to_head": 0.1145,
+        "tactical_fit": 0.1145,
+        "odds_market": 0.0763,
+        "elo_ranking": 0.0229,
+        "external_factors": 0.0382,
+        "goalkeeper": 0.0534,
+        "fatigue_schedule": 0.0382,
+        "set_pieces": 0.0382,
+        "match_stakes": 0.0534,
+        "squad_depth": 0.0382
+      },
+      "lesson": []
+    }
+  ],
+  "model_params": {
+    "dimension_weights": {
+      "player_status": 0.2061,
+      "recent_form": 0.2061,
+      "head_to_head": 0.1145,
+      "tactical_fit": 0.1145,
+      "odds_market": 0.0763,
+      "elo_ranking": 0.0229,
+      "external_factors": 0.0382,
+      "goalkeeper": 0.0534,
+      "fatigue_schedule": 0.0382,
+      "set_pieces": 0.0382,
+      "match_stakes": 0.0534,
+      "squad_depth": 0.0382
+    },
+    "correction_factors": {
+      "home_advantage": 0.05,
+      "form_bonus": 0.08,
+      "injury_penalty": 0.1,
+      "psychology_bonus": 0.04,
+      "tactical_bonus": 0.06
+    },
+    "total_predictions": 5,
+    "correct_result_count": 1,
+    "correct_score_count": 1,
+    "avg_score_deviation": 0.5
+  }
+}

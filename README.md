@@ -57,6 +57,14 @@ python3 scripts/evolution_ledger.py result 1 2 1
 python3 scripts/evolution_ledger.py review
 ```
 
+### 4. 🎨 示例效果展示 (Demo Site)
+我们在 `demo_site/` 目录下为你保留了真实生成的示例网页，你可以直接双击用浏览器打开查看最终效果：
+- **赛事大厅导航**：[`demo_site/index.html`](demo_site/index.html)
+- **美国 vs 澳大利亚预测**：[`demo_site/usa-vs-australia.html`](demo_site/usa-vs-australia.html)
+- **韩国 vs 墨西哥预测**：[`demo_site/korea-vs-mexico.html`](demo_site/korea-vs-mexico.html)
+
+> 💡 **提示**：无论你用 Cursor 还是 Codebuddy 执行，所有新生成的预测页面都会自动保存到这个 `demo_site/` 文件夹下，并实时更新赛事导航中心！
+
 ---
 
 ## 💻 相对路径开箱即用

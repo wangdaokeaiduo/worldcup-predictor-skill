@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>预测报告：土耳其 vs 巴拉圭 | 2026世界杯</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Noto+Sans+SC:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #060a14; --bg-card: rgba(14, 20, 36, 0.85); --bg-glass: rgba(255,255,255,0.03);
+            --border-glass: rgba(255,255,255,0.07); --text-primary: #e8ecf4; --text-secondary: #8b95a8;
+            --text-muted: #4a5568; --accent-blue: #3b82f6; --accent-gold: #f6c744; --accent-green: #10b981;
+            --accent-red: #ef4444; --gradient-blue: linear-gradient(135deg, #3b82f6, #06b6d4);
+            --gradient-purple: linear-gradient(135deg, #8b5cf6, #ec4899); --gradient-fire: linear-gradient(135deg, #ef4444, #f59e0b);
+            --gradient-green: linear-gradient(135deg, #10b981, #059669); --radius: 16px;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', 'Noto Sans SC', sans-serif; background: var(--bg-primary); color: var(--text-primary);
+            line-height: 1.6; overflow-x: hidden; -webkit-overflow-scrolling: touch;
+            padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right);
+        }
+
+        /* === Top Navigation === */
+        .top-nav {
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(10, 14, 26, 0.85);
+            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-glass);
+            padding: 14px 20px; padding-top: max(14px, env(safe-area-inset-top));
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .nav-back { display: inline-flex; align-items: center; gap: 6px; color: var(--text-primary); text-decoration: none; font-size: 14px; font-weight: 600; transition: color 0.2s; }
+        .nav-back:hover { color: var(--accent-blue); }
+        .nav-title { font-size: 11px; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; font-weight: 700; display: none; }
+        @media (min-width: 480px) { .nav-title { display: block; } }
+
+        /* === Animated Background === */
+        .bg-particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; background: radial-gradient(ellipse 800px 600px at 50% -20%, rgba(239,68,68,0.1) 0%, transparent 70%); }
+        .container { max-width: 800px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 1; }
+
+        /* === Prediction Hero === */
+        .prediction-hero { text-align: center; padding: 50px 0 30px; }
+        .match-badge { display: inline-block; padding: 6px 16px; background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3); border-radius: 100px; font-size: 12px; font-weight: 700; color: var(--accent-red); margin-bottom: 16px; letter-spacing: 1px; }
+        .matchup { display: flex; align-items: center; justify-content: center; gap: 40px; margin-bottom: 24px; }
+        .team { display: flex; flex-direction: column; align-items: center; gap: 8px; flex: 1; }
+        .team-flag { width: 100px; height: 100px; display: flex; align-items: center; justify-content: center; font-size: 60px; background: var(--bg-glass); border: 1px solid var(--border-glass); border-radius: 50%; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .team-name { font-size: 24px; font-weight: 900; }
+        .team-rank { font-size: 12px; color: var(--text-muted); }
+        .score-display { display: flex; align-items: center; justify-content: center; gap: 20px; }
+        .score-number { font-size: 80px; font-weight: 900; background: var(--gradient-fire); -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height: 1; }
+        .score-colon { font-size: 40px; color: var(--text-muted); font-weight: 300; }
+
+        /* === Cards === */
+        .card { background: var(--bg-card); border: 1px solid var(--border-glass); border-radius: var(--radius); padding: 24px; margin-bottom: 20px; backdrop-filter: blur(10px); }
+        .card-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; border-bottom: 1px solid var(--border-glass); padding-bottom: 16px; }
+        .card-icon { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; font-size: 18px; background: var(--gradient-blue); border-radius: 10px; }
+        .card-title { font-size: 16px; font-weight: 700; }
+        .card-subtitle { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+
+        /* === Evo Banner === */
+        .evo-banner { display: flex; align-items: flex-start; gap: 16px; background: rgba(139,92,246,0.1); border: 1px solid rgba(139,92,246,0.3); border-radius: 12px; padding: 16px; margin-bottom: 24px; }
+        .evo-icon { font-size: 24px; animation: pulse 2s infinite; }
+        .evo-content h4 { color: var(--accent-purple); font-size: 14px; margin-bottom: 4px; }
+        .evo-content p { font-size: 12px; color: var(--text-secondary); margin: 0; }
+        @keyframes pulse { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.1); opacity: 0.8; } }
+
+        /* === Power Scan === */
+        .team-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .team-profile h4 { display: flex; align-items: center; gap: 8px; font-size: 15px; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px dashed var(--border-glass); }
+        .trait-list { list-style: none; }
+        .trait-list li { display: flex; align-items: flex-start; gap: 8px; font-size: 13px; color: var(--text-secondary); margin-bottom: 10px; }
+        .trait-label { font-weight: 700; color: var(--text-primary); white-space: nowrap; }
+
+        /* === Probability Bars === */
+        .prob-row { margin-bottom: 16px; }
+        .prob-labels { display: flex; justify-content: space-between; font-size: 12px; font-weight: 600; margin-bottom: 6px; }
+        .prob-bar-bg { width: 100%; height: 8px; background: rgba(0,0,0,0.3); border-radius: 4px; overflow: hidden; }
+        .prob-bar-fill { height: 100%; width: 0; border-radius: 4px; transition: width 1.5s cubic-bezier(0.2, 0.8, 0.2, 1); }
+
+        /* === Coaches === */
+        .coach-card { background: rgba(255,255,255,0.02); border: 1px solid var(--border-glass); border-radius: 12px; padding: 16px; margin-bottom: 12px; cursor: pointer; transition: background 0.3s; }
+        .coach-card:hover { background: rgba(255,255,255,0.04); }
+        .coach-header { display: flex; align-items: center; gap: 12px; }
+        .coach-avatar { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; }
+        .coach-name { font-weight: 700; font-size: 14px; }
+        .coach-style { font-size: 11px; color: var(--text-muted); }
+        .coach-quote { font-size: 13px; color: var(--text-secondary); padding-left: 52px; margin-top: 4px; border-left: 2px solid transparent; display: none; }
+        .coach-prediction { margin-top: 12px; margin-left: 52px; display: inline-block; padding: 4px 12px; background: rgba(255,255,255,0.05); border-radius: 4px; font-size: 12px; font-weight: 700; display: none; }
+        .expand-hint { font-size: 10px; color: var(--text-muted); margin-left: 52px; margin-top: 8px; }
+        .coach-card.expanded .coach-quote, .coach-card.expanded .coach-prediction { display: block; }
+        .coach-card.expanded .expand-hint { display: none; }
+
+        /* === X Factors === */
+        .xfactor-item { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 16px; padding: 12px; background: rgba(255,255,255,0.02); border-radius: 8px; }
+        .xfactor-icon { font-size: 20px; }
+        .xfactor-title { font-weight: 700; font-size: 14px; color: var(--text-primary); margin-bottom: 4px; }
+        .xfactor-desc { font-size: 12px; color: var(--text-secondary); }
+
+        /* === Footer === */
+        .footer { text-align: center; padding: 30px 0; border-top: 1px solid var(--border-glass); margin-top: 20px; }
+        .footer-disclaimer { font-size: 12px; color: var(--text-muted); margin-bottom: 20px; }
+
+        .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.6s, transform 0.6s; }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 768px) {
+            .team-grid { grid-template-columns: 1fr; }
+            .team-flag { width: 80px; height: 80px; font-size: 44px; }
+            .score-number { font-size: 56px; }
+        }
+        @media (max-width: 480px) {
+            .prediction-hero { padding: 28px 0 20px; }
+            .matchup { gap: 8px; }
+            .team-flag { width: 54px; height: 54px; font-size: 30px; }
+            .team-name { font-size: 14px; }
+            .team-rank { font-size: 9px; }
+            .score-number { font-size: 40px; }
+            .score-colon { font-size: 28px; }
+            .card { padding: 14px; }
+            .card-title { font-size: 13px; }
+            .coach-quote { padding-left: 0; margin-top: 12px; border-left: 2px solid var(--border-glass); padding-left: 12px; }
+            .coach-prediction, .expand-hint { margin-left: 0; }
+        }
+        @media (max-width: 360px) {
+            .team-flag { width: 44px; height: 44px; font-size: 24px; }
+            .score-number { font-size: 32px; }
+            .score-colon { font-size: 24px; }
+            .team-name { font-size: 12px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+        <a href="index.html" class="nav-back"><span>←</span> 返回赛事大厅</a>
+        <div class="nav-title">2026 世界杯预测报告</div>
+    </nav>
+    
+    <div class="bg-particles"></div>
+    <div class="container">
+
+        <!-- Hero -->
+        <section class="prediction-hero fade-up">
+            <div class="match-badge">🔥 小组赛D组生死战 · 旧金山 Levi's Stadium</div>
+            <div class="matchup">
+                <div class="team">
+                    <div class="team-flag">🇹🇷</div>
+                    <div class="team-name">土耳其</div>
+                    <div class="team-rank">FIFA #22 · 蓄势待发</div>
+                </div>
+                <div class="score-display">
+                    <div class="score-number" id="scoreA">0</div>
+                    <div class="score-colon">:</div>
+                    <div class="score-number" id="scoreB">0</div>
+                </div>
+                <div class="team">
+                    <div class="team-flag">🇵🇾</div>
+                    <div class="team-name">巴拉圭</div>
+                    <div class="team-rank">FIFA #41 · 防线告急</div>
+                </div>
+            </div>
+            <p style="font-size:12px; color:var(--text-muted);">预测置信度：⭐⭐⭐⭐ (65.5% 基于最新泊松概率模型)</p>
+        </section>
+
+        <!-- Evo Statement -->
+        <div class="evo-banner fade-up">
+            <div class="evo-icon">🧬</div>
+            <div class="evo-content">
+                <h4>SkillOpt 自我进化声明</h4>
+                <p>预测引擎已完成第 5 轮自我进化迭代。基于历史反馈，我们已将【替补深度】和【体能状况】权重上调。巴拉圭首轮暴露出严重的后半场体能崩盘与阵容厚度问题，这将成为本场胜负手。</p>
+            </div>
+        </div>
+
+        <!-- Power Scan -->
+        <div class="card fade-up">
+            <div class="card-header">
+                <div class="card-icon">⚔️</div>
+                <div><div class="card-title">双方实力透视</div><div class="card-subtitle">Power Scan</div></div>
+            </div>
+            <div class="team-grid">
+                <div class="team-profile">
+                    <h4>🇹🇷 土耳其队战力画像</h4>
+                    <ul class="trait-list">
+                        <li><span class="trait-label">核心武器：</span>恰尔汗奥卢 (Hakan Çalhanoğlu) — 中场“节拍器”与“重炮手”，拥有改变比赛的定位球能力。</li>
+                        <li><span class="trait-label">战术DNA：</span>蒙特拉的4-2-3-1体系，强调高压逼抢和中路传控（首轮控球率高达72%）。</li>
+                        <li><span class="trait-label">近期状态：</span>首战0-2不敌澳大利亚，空有30脚射门却颗粒无收，急需解决终结能力问题。</li>
+                        <li><span class="trait-label">致命软肋：</span>锋无力。防线在面对反击时容易被打穿。</li>
+                    </ul>
+                </div>
+                <div class="team-profile">
+                    <h4>🇵🇾 巴拉圭队战力画像</h4>
+                    <ul class="trait-list">
+                        <li><span class="trait-label">核心武器：</span>米格尔·阿尔米隆 (Miguel Almirón) — “反击利刃”，但目前饱受肌肉疲劳困扰。</li>
+                        <li><span class="trait-label">战术DNA：</span>南美传统的铁血防守反击 (4-4-2/5-4-1)，依赖快速转换。</li>
+                        <li><span class="trait-label">近期状态：</span>首战1-4惨败于美国，昔日引以为傲的防线崩塌，士气低迷。</li>
+                        <li><span class="trait-label">致命软肋：</span>体能储备堪忧，70分钟后容易崩盘，且替补阵容极度单薄。</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tactical Breakdown -->
+        <div class="card fade-up">
+            <div class="card-header">
+                <div class="card-icon" style="background:var(--gradient-green)">🧩</div>
+                <div><div class="card-title">战术克制与推演</div><div class="card-subtitle">Tactical Breakdown</div></div>
+            </div>
+            <ul class="trait-list">
+                <li><span class="trait-label">历史交锋：</span>两队近10年无交手记录，史上唯一交锋是1995年的0-0。这是一场遭遇战。</li>
+                <li><span class="trait-label">阵型对抗：</span>4-2-3-1 (控球压迫) vs 4-4-2 (低位防反)。</li>
+                <li><span class="trait-label">战术克制：</span>土耳其将掌控绝对球权。由于巴拉圭防线漏洞百出且体能不佳，土耳其前场青年才俊（居莱尔、伊尔迪兹）的穿插跑动将制造致命杀机。</li>
+                <li><span class="trait-label">胜负手：</span>土耳其能否将控球转化为进球。如果土耳其迟迟不进球，巴拉圭阿尔米隆的反击将是巨大威胁；但随着时间推移，巴拉圭体能耗尽，土耳其的替补深度将终结悬念。</li>
+            </ul>
+        </div>
+
+        <!-- Probabilities -->
+        <div class="card fade-up">
+            <div class="card-header">
+                <div class="card-icon" style="background:var(--gradient-purple)">📊</div>
+                <div><div class="card-title">终极概率输出</div><div class="card-subtitle">Poisson-Elo Distribution</div></div>
+            </div>
+            <div class="prob-row">
+                <div class="prob-labels"><span>🇹🇷 土耳其胜 (1.95)</span><span>65.5%</span></div>
+                <div class="prob-bar-bg"><div class="prob-bar-fill" style="background:var(--accent-red)" data-width="65.5"></div></div>
+            </div>
+            <div class="prob-row">
+                <div class="prob-labels"><span>🤝 平局 (3.30)</span><span>22.5%</span></div>
+                <div class="prob-bar-bg"><div class="prob-bar-fill" style="background:var(--accent-gold)" data-width="22.5"></div></div>
+            </div>
+            <div class="prob-row">
+                <div class="prob-labels"><span>🇵🇾 巴拉圭胜 (4.00)</span><span>12.0%</span></div>
+                <div class="prob-bar-bg"><div class="prob-bar-fill" style="background:var(--accent-blue)" data-width="12.0"></div></div>
+            </div>
+        </div>
+
+        <!-- Coaches Roundtable -->
+        <div class="card fade-up">
+            <div class="card-header">
+                <div class="card-icon" style="background:var(--gradient-fire)">🎙️</div>
+                <div><div class="card-title">五人虚拟教练团博弈</div><div class="card-subtitle">Coaches' Roundtable</div></div>
+            </div>
+            
+            <div class="coach-card" onclick="this.classList.toggle('expanded')">
+                <div class="coach-header"><div class="coach-avatar" style="background:var(--accent-blue)">🧠</div><div><div class="coach-name">瓜迪奥拉式分析师</div><div class="coach-style">控球数据派</div></div></div>
+                <div class="coach-quote">上场比赛土耳其高达72%的控球率和30次射门证明了他们的系统是有效的。足球是概率游戏，只要保持这样的控制力，进球只是时间问题。巴拉圭的防守在美国队面前已经千疮百孔，根本挡不住星月军团的渗透。</div>
+                <div class="coach-prediction">预测：土耳其 2-0 巴拉圭</div>
+                <div class="expand-hint">▼ 点击展开完整分析</div>
+            </div>
+
+            <div class="coach-card" onclick="this.classList.toggle('expanded')">
+                <div class="coach-header"><div class="coach-avatar" style="background:var(--text-muted)">⚡</div><div><div class="coach-name">穆里尼奥式分析师</div><div class="coach-style">防守反击实战派</div></div></div>
+                <div class="coach-quote">30次射门不进说明什么？说明你的前锋没有杀手本能！土耳其防线压得太上，完全是在给巴拉圭留冲刺走廊。阿尔法罗一定会死守前60分钟，只要抓住土耳其一次失误，阿尔米隆就能给他们致命一击！</div>
+                <div class="coach-prediction">预测：土耳其 0-1 巴拉圭</div>
+                <div class="expand-hint">▼ 点击展开完整分析</div>
+            </div>
+
+            <div class="coach-card" onclick="this.classList.toggle('expanded')">
+                <div class="coach-header"><div class="coach-avatar" style="background:var(--gradient-purple)">🔮</div><div><div class="coach-name">贝利式预言家</div><div class="coach-style">玄学直觉派</div></div></div>
+                <div class="coach-quote">南美球队在世界杯绝境下的爆发力向来不可小视。但是，土耳其在背水一战时的"疯狗精神"更胜一筹。2008年欧洲杯的逆转奇迹仿佛就在眼前，我相信这场生死战土耳其的年轻人会成为救世主。</div>
+                <div class="coach-prediction">预测：土耳其 2-1 巴拉圭</div>
+                <div class="expand-hint">▼ 点击展开完整分析</div>
+            </div>
+
+            <div class="coach-card" onclick="this.classList.toggle('expanded')">
+                <div class="coach-header"><div class="coach-avatar" style="background:var(--gradient-green)">📊</div><div><div class="coach-name">数据科学家</div><div class="coach-style">纯模型派</div></div></div>
+                <div class="coach-quote">根据最新一期的进化模型权重调整，巴拉圭极差的板凳深度（Depth Penalty: -3%）和体能疲劳（Fatigue Penalty: -3%）严重拖累了他们的胜率。Elo模型中，土耳其胜率被提升至65.5%。预期进球λ_A=1.9，λ_B=0.6。2-0的发生概率高达16%。</div>
+                <div class="coach-prediction">预测：土耳其 2-0 巴拉圭</div>
+                <div class="expand-hint">▼ 点击展开完整分析</div>
+            </div>
+
+            <div class="coach-card" onclick="this.classList.toggle('expanded')">
+                <div class="coach-header"><div class="coach-avatar" style="background:var(--gradient-fire)">🎙️</div><div><div class="coach-name">黄健翔式解说员</div><div class="coach-style">情绪感染派</div></div></div>
+                <div class="coach-quote">比赛第75分钟，巴拉圭的防线体能见底了！恰尔汗奥卢，一脚穿透力极强的直塞，居莱尔！阿尔达·居莱尔！伟大的土耳其新星！他继承了突厥铁骑的传统！这一刻他不是一个人在战斗！球进啦！！！</div>
+                <div class="coach-prediction">预测：土耳其 3-0 巴拉圭</div>
+                <div class="expand-hint">▼ 点击展开完整分析</div>
+            </div>
+
+        </div>
+
+        <!-- X Factors -->
+        <div class="card fade-up">
+            <div class="card-header">
+                <div class="card-icon" style="background:var(--gradient-gold)">⚠️</div>
+                <div><div class="card-title">X变量预警</div><div class="card-subtitle">Game Changers</div></div>
+            </div>
+            
+            <div class="xfactor-item">
+                <div class="xfactor-icon">🔑</div>
+                <div>
+                    <div class="xfactor-title">关键人物：阿尔达·居莱尔 (Arda Güler)</div>
+                    <div class="xfactor-desc">皇马新星需要在如此高压下证明自己，他的一脚神仙球或精准直塞是破密集防守的利器。</div>
+                </div>
+            </div>
+            
+            <div class="xfactor-item">
+                <div class="xfactor-icon">⏰</div>
+                <div>
+                    <div class="xfactor-title">关键时间节点：60-75分钟</div>
+                    <div class="xfactor-desc">巴拉圭体能下降的高危期，也是土耳其利用换人发力的黄金时段。如果此时未能分出胜负，土耳其极可能在此阶段进球。</div>
+                </div>
+            </div>
+            
+            <div class="xfactor-item">
+                <div class="xfactor-icon">🎰</div>
+                <div>
+                    <div class="xfactor-title">博彩视角</div>
+                    <div class="xfactor-desc">市场盘口-0.5力挺土耳其。考虑到首轮土耳其颗粒无收，市场依然看好，说明对其绝对实力有信心。防范小比分。</div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer fade-up">
+            <div class="footer-disclaimer">⚠️ 本预测基于 Elo-泊松模型推演，仅供参考。足球是圆的！⚽</div>
+            <p style="font-size:11px; color:var(--text-muted);">Powered by World Cup Predictor v3.0 · SkillOpt</p>
+        </footer>
+    </div>
+
+    <script>
+        const observer = new IntersectionObserver(entries => { entries.forEach((entry, i) => { if (entry.isIntersecting) { setTimeout(() => entry.target.classList.add('visible'), i * 80); observer.unobserve(entry.target); }}); }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+        const barObserver = new IntersectionObserver(entries => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.querySelectorAll('.prob-bar-fill').forEach(bar => { setTimeout(() => bar.style.width = bar.dataset.width + '%', 300); }); barObserver.unobserve(entry.target); }}); }, { threshold: 0.3 });
+        document.querySelectorAll('.prob-row').forEach(el => barObserver.observe(el.closest('.card')));
+        function animateScore(el, target) { let c = 0; const s = () => { if (c <= target) { el.textContent = c; c++; setTimeout(s, 200); } }; setTimeout(s, 800); }
+        const scoreObserver = new IntersectionObserver(entries => { entries.forEach(entry => { if (entry.isIntersecting) { animateScore(document.getElementById('scoreA'), 2); animateScore(document.getElementById('scoreB'), 0); scoreObserver.unobserve(entry.target); }}); }, { threshold: 0.5 });
+        scoreObserver.observe(document.querySelector('.prediction-hero'));
+    </script>
+</body>
+</html>

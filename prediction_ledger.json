@@ -129,9 +129,23 @@
         "match_stakes": 0.05,
         "squad_depth": 0.05
       },
-      "actual_result": null,
-      "reflection": null,
-      "score": null
+      "actual_result": {
+        "team_a": 2,
+        "team_b": 0
+      },
+      "reflection": {
+        "timestamp": "2026-06-20T05:35:23.256940",
+        "prediction_accuracy": 85,
+        "what_was_right": [
+          "✅ 胜平负方向判断正确 (预测: win_a, 实际: win_a)",
+          "✅ 美国进球数完全命中 (2球)",
+          "✅ 总进球数预测接近 (预测3球 vs 实际2球)"
+        ],
+        "what_went_wrong": [],
+        "root_causes": [],
+        "dimension_adjustments": {}
+      },
+      "score": 85
     },
     {
       "id": 4,
@@ -202,6 +216,41 @@
       "actual_result": null,
       "reflection": null,
       "score": null
+    },
+    {
+      "id": 6,
+      "timestamp": "2026-06-20T05:40:53.557221",
+      "match": "土耳其 vs 巴拉圭",
+      "team_a": "土耳其",
+      "team_b": "巴拉圭",
+      "predicted_score": {
+        "team_a": 2,
+        "team_b": 0
+      },
+      "predicted_probs": {
+        "win_a": 65.5,
+        "draw": 22.5,
+        "win_b": 12.0
+      },
+      "confidence": 4,
+      "key_reasoning": "当拥有72%控球率的星月军团，遇上体能枯竭防线崩盘的巴拉圭，胜利的天平只会倒向有子弹的一方！",
+      "dimension_weights_used": {
+        "player_status": 0.2061,
+        "recent_form": 0.2061,
+        "head_to_head": 0.1145,
+        "tactical_fit": 0.1145,
+        "odds_market": 0.0763,
+        "elo_ranking": 0.0229,
+        "external_factors": 0.0382,
+        "goalkeeper": 0.0534,
+        "fatigue_schedule": 0.0382,
+        "set_pieces": 0.0382,
+        "match_stakes": 0.0534,
+        "squad_depth": 0.0382
+      },
+      "actual_result": null,
+      "reflection": null,
+      "score": null
     }
   ],
   "evolution_insights": [
@@ -246,6 +295,26 @@
         "squad_depth": 0.0382
       },
       "lesson": []
+    },
+    {
+      "timestamp": "2026-06-20T05:35:23.257120",
+      "match": "美国 vs 澳大利亚",
+      "score": 85,
+      "weights_after": {
+        "player_status": 0.2061,
+        "recent_form": 0.2061,
+        "head_to_head": 0.1145,
+        "tactical_fit": 0.1145,
+        "odds_market": 0.0763,
+        "elo_ranking": 0.0229,
+        "external_factors": 0.0382,
+        "goalkeeper": 0.0534,
+        "fatigue_schedule": 0.0382,
+        "set_pieces": 0.0382,
+        "match_stakes": 0.0534,
+        "squad_depth": 0.0382
+      },
+      "lesson": []
     }
   ],
   "model_params": {
@@ -270,9 +339,9 @@
       "psychology_bonus": 0.04,
       "tactical_bonus": 0.06
     },
-    "total_predictions": 5,
-    "correct_result_count": 1,
+    "total_predictions": 6,
+    "correct_result_count": 2,
     "correct_score_count": 1,
-    "avg_score_deviation": 0.5
+    "avg_score_deviation": 0.6666666666666666
   }
 }

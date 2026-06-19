@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚽ 世界杯比分预测引擎 v3.0 — 韩国 vs 墨西哥</title>
+    <meta name="description" content="2026世界杯比分预测引擎，十二维度自我进化版">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0e1a;
+            --bg-card: rgba(16, 22, 40, 0.85);
+            --bg-glass: rgba(255, 255, 255, 0.04);
+            --border-glass: rgba(255, 255, 255, 0.08);
+            --text-primary: #e8ecf4;
+            --text-secondary: #8b95a8;
+            --text-muted: #5a6478;
+            --accent-blue: #3b82f6;
+            --accent-cyan: #06b6d4;
+            --accent-green: #10b981;
+            --accent-red: #ef4444;
+            --accent-orange: #f59e0b;
+            --accent-purple: #8b5cf6;
+            --accent-pink: #ec4899;
+            --korea-red: #cd2e3a;
+            --korea-blue: #003478;
+            --mexico-green: #006847;
+            --mexico-red: #ce1126;
+            --gradient-hero: linear-gradient(135deg, #003478 0%, #0a0e1a 40%, #0a0e1a 60%, #006847 100%);
+            --gradient-blue: linear-gradient(135deg, #3b82f6, #06b6d4);
+            --gradient-fire: linear-gradient(135deg, #ef4444, #f59e0b);
+            --gradient-green: linear-gradient(135deg, #10b981, #06b6d4);
+            --gradient-purple: linear-gradient(135deg, #8b5cf6, #ec4899);
+            --radius: 16px;
+            --radius-sm: 10px;
+            --shadow: 0 8px 32px rgba(0,0,0,0.4);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-overflow-scrolling: touch;
+            padding-top: env(safe-area-inset-top);
+            padding-bottom: env(safe-area-inset-bottom);
+            padding-left: env(safe-area-inset-left);
+            padding-right: env(safe-area-inset-right);
+        }
+
+        /* === Top Navigation === */
+        .top-nav {
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(10, 14, 26, 0.85);
+            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-glass);
+            padding: 14px 20px; padding-top: max(14px, env(safe-area-inset-top));
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .nav-back {
+            display: inline-flex; align-items: center; gap: 6px;
+            color: var(--text-primary); text-decoration: none;
+            font-size: 14px; font-weight: 600; transition: color 0.2s;
+        }
+        .nav-back:hover { color: var(--accent-blue); }
+        .nav-title {
+            font-size: 11px; color: var(--text-muted); letter-spacing: 1px;
+            text-transform: uppercase; font-weight: 700; display: none;
+        }
+        @media (min-width: 480px) { .nav-title { display: block; } }
+
+        /* === Animated Background === */
+        .bg-particles {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 0;
+            background:
+                radial-gradient(ellipse 600px 400px at 15% 20%, rgba(0,52,120,0.15) 0%, transparent 70%),
+                radial-gradient(ellipse 500px 350px at 85% 80%, rgba(0,104,71,0.12) 0%, transparent 70%),
+                radial-gradient(ellipse 300px 300px at 50% 50%, rgba(59,130,246,0.05) 0%, transparent 70%);
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* === Hero Section === */
+        .hero {
+            padding: 60px 0 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -100px; left: 50%; transform: translateX(-50%);
+            width: 800px; height: 400px;
+            background: radial-gradient(ellipse, rgba(59,130,246,0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .version-badge {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 6px 16px;
+            background: var(--gradient-blue);
+            border-radius: 100px;
+            font-size: 11px; font-weight: 700;
+            letter-spacing: 1px; text-transform: uppercase;
+            color: #fff;
+            margin-bottom: 20px;
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(59,130,246,0.3); }
+            50% { box-shadow: 0 0 40px rgba(59,130,246,0.5); }
+        }
+
+        .hero h1 {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+
+        .matchup {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 32px;
+            margin-bottom: 28px;
+        }
+
+        .team {
+            display: flex; flex-direction: column; align-items: center; gap: 12px;
+        }
+
+        .team-flag {
+            width: 100px; height: 100px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 56px;
+            position: relative;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .team-flag.korea { background: linear-gradient(135deg, rgba(205,46,58,0.2), rgba(0,52,120,0.2)); border: 2px solid rgba(205,46,58,0.3); animation-delay: 0s; }
+        .team-flag.mexico { background: linear-gradient(135deg, rgba(0,104,71,0.2), rgba(206,17,38,0.2)); border: 2px solid rgba(0,104,71,0.3); animation-delay: 0.5s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .team-name {
+            font-size: 22px; font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .team-rank {
+            font-size: 12px; color: var(--text-muted);
+            padding: 3px 10px;
+            background: var(--bg-glass);
+            border-radius: 100px;
+            border: 1px solid var(--border-glass);
+        }
+
+        .vs-circle {
+            width: 60px; height: 60px;
+            border-radius: 50%;
+            background: var(--gradient-fire);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 18px; font-weight: 900;
+            box-shadow: 0 0 30px rgba(239,68,68,0.3);
+            flex-shrink: 0;
+        }
+
+        /* === Cards === */
+        .card {
+            background: var(--bg-card);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius);
+            padding: 28px;
+            margin-bottom: 24px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            border-color: rgba(255,255,255,0.12);
+        }
+
+        .card-header {
+            display: flex; align-items: center; gap: 12px;
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border-glass);
+        }
+
+        .card-icon {
+            width: 40px; height: 40px;
+            border-radius: var(--radius-sm);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .card-title {
+            font-size: 16px; font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .card-subtitle {
+            font-size: 11px; color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* === Evolution Statement === */
+        .evolution-card {
+            border-image: linear-gradient(135deg, rgba(139,92,246,0.4), rgba(236,72,153,0.4)) 1;
+            border-width: 1px;
+            border-style: solid;
+            background: linear-gradient(135deg, rgba(139,92,246,0.05), rgba(236,72,153,0.05));
+        }
+
+        .evolution-card .card-icon { background: var(--gradient-purple); }
+
+        .evo-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .evo-stat {
+            text-align: center;
+            padding: 12px;
+            background: var(--bg-glass);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-glass);
+        }
+
+        .evo-stat-value {
+            font-size: 20px; font-weight: 800;
+            background: var(--gradient-purple);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .evo-stat-label { font-size: 11px; color: var(--text-muted); margin-top: 4px; }
+
+        .evo-change {
+            padding: 12px 16px;
+            background: rgba(139,92,246,0.08);
+            border-left: 3px solid var(--accent-purple);
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-top: 8px;
+        }
+
+        .evo-change strong { color: var(--accent-purple); }
+
+        /* === Prediction Big Number === */
+        .prediction-hero {
+            text-align: center;
+            padding: 48px 20px;
+            background: linear-gradient(135deg, rgba(59,130,246,0.08), rgba(6,182,212,0.08));
+            border: 1px solid rgba(59,130,246,0.2);
+        }
+
+        .prediction-hero .score-display {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+
+        .score-team {
+            display: flex; flex-direction: column; align-items: center; gap: 8px;
+        }
+
+        .score-team .flag { font-size: 48px; }
+        .score-team .name { font-size: 14px; font-weight: 600; color: var(--text-secondary); }
+
+        .score-number {
+            font-size: 72px;
+            font-weight: 900;
+            line-height: 1;
+            background: var(--gradient-blue);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .score-colon {
+            font-size: 48px; font-weight: 300; color: var(--text-muted);
+        }
+
+        .confidence-bar {
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            margin-top: 16px;
+        }
+
+        .confidence-star { font-size: 20px; }
+        .confidence-star.active { filter: none; }
+        .confidence-star.inactive { opacity: 0.2; }
+
+        .confidence-label { font-size: 13px; color: var(--text-secondary); margin-left: 8px; }
+
+        .prediction-reason {
+            max-width: 600px; margin: 20px auto 0;
+            font-size: 14px; color: var(--text-secondary);
+            line-height: 1.8;
+            padding: 16px;
+            background: var(--bg-glass);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-glass);
+        }
+
+        /* === Probability Bars === */
+        .prob-row {
+            display: flex; align-items: center; gap: 12px;
+            margin-bottom: 14px;
+            touch-action: manipulation;
+        }
+
+        .prob-label {
+            width: 100px; font-size: 13px; font-weight: 600;
+            text-align: right; flex-shrink: 0;
+        }
+
+        .prob-bar-track {
+            flex: 1; height: 32px;
+            background: var(--bg-glass);
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .prob-bar-fill {
+            height: 100%;
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: flex-end;
+            padding-right: 12px;
+            font-size: 13px; font-weight: 700;
+            color: #fff;
+            transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+            width: 0;
+        }
+
+        .prob-bar-fill.korea { background: linear-gradient(90deg, rgba(205,46,58,0.6), var(--korea-red)); }
+        .prob-bar-fill.draw { background: linear-gradient(90deg, rgba(245,158,11,0.6), var(--accent-orange)); }
+        .prob-bar-fill.mexico { background: linear-gradient(90deg, rgba(0,104,71,0.6), var(--mexico-green)); }
+
+        .prob-change {
+            font-size: 11px; color: var(--accent-green);
+            width: 60px; text-align: left; flex-shrink: 0;
+        }
+
+        .prob-change.down { color: var(--accent-red); }
+
+        /* === Score Table === */
+        .score-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 6px;
+        }
+
+        .score-table th {
+            font-size: 11px; color: var(--text-muted);
+            text-transform: uppercase; letter-spacing: 1px;
+            padding: 8px 12px;
+            text-align: left;
+        }
+
+        .score-table td {
+            padding: 12px;
+            background: var(--bg-glass);
+            font-size: 14px;
+        }
+
+        .score-table tr td:first-child { border-radius: var(--radius-sm) 0 0 var(--radius-sm); font-size: 20px; text-align: center; width: 50px; }
+        .score-table tr td:last-child { border-radius: 0 var(--radius-sm) var(--radius-sm) 0; }
+
+        .score-table .score-val { font-weight: 800; font-size: 16px; }
+        .score-table .score-prob {
+            display: inline-block; padding: 2px 10px;
+            background: rgba(59,130,246,0.15);
+            border-radius: 100px;
+            font-size: 12px; font-weight: 600;
+            color: var(--accent-blue);
+        }
+
+        /* === Team Power === */
+        .team-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+        .team-panel {
+            padding: 20px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-glass);
+        }
+
+        .team-panel.korea-panel { background: linear-gradient(135deg, rgba(205,46,58,0.06), rgba(0,52,120,0.06)); border-color: rgba(205,46,58,0.15); }
+        .team-panel.mexico-panel { background: linear-gradient(135deg, rgba(0,104,71,0.06), rgba(206,17,38,0.06)); border-color: rgba(0,104,71,0.15); }
+
+        .team-panel-header {
+            display: flex; align-items: center; gap: 10px;
+            margin-bottom: 14px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-glass);
+        }
+
+        .team-panel-header .flag { font-size: 28px; }
+        .team-panel-header .name { font-size: 16px; font-weight: 700; }
+
+        .power-item {
+            margin-bottom: 12px;
+        }
+
+        .power-label {
+            font-size: 12px; font-weight: 700;
+            color: var(--accent-cyan);
+            margin-bottom: 4px;
+        }
+
+        .power-text { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+
+        /* === Dimension Radar === */
+        .dim-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+        .dim-item {
+            display: flex; align-items: center; gap: 12px;
+            padding: 14px;
+            background: var(--bg-glass);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-glass);
+            transition: background 0.3s;
+        }
+
+        .dim-item:hover { background: rgba(255,255,255,0.06); }
+
+        .dim-item.new { border-color: rgba(139,92,246,0.3); }
+        .dim-item.new::after {
+            content: 'NEW';
+            font-size: 9px; font-weight: 800;
+            background: var(--gradient-purple);
+            color: #fff;
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-left: auto;
+        }
+
+        .dim-icon { font-size: 22px; flex-shrink: 0; }
+
+        .dim-info { flex: 1; min-width: 0; }
+        .dim-name { font-size: 13px; font-weight: 600; }
+        .dim-weight { font-size: 11px; color: var(--text-muted); }
+
+        .dim-winner {
+            font-size: 11px; font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 100px;
+            flex-shrink: 0;
+        }
+
+        .dim-winner.korea { background: rgba(205,46,58,0.15); color: var(--korea-red); }
+        .dim-winner.mexico { background: rgba(0,104,71,0.15); color: var(--mexico-green); }
+        .dim-winner.even { background: rgba(245,158,11,0.15); color: var(--accent-orange); }
+
+        /* === Coaches === */
+        .coach-card {
+            padding: 20px;
+            margin-bottom: 12px;
+            background: var(--bg-glass);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-glass);
+            transition: transform 0.3s, background 0.3s;
+            cursor: pointer;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .coach-card:hover { transform: translateX(4px); }
+        .coach-card:active { background: rgba(255,255,255,0.06); }
+
+        .coach-header {
+            display: flex; align-items: center; gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .coach-avatar {
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 18px;
+        }
+
+        .coach-name { font-size: 14px; font-weight: 700; }
+        .coach-style { font-size: 11px; color: var(--text-muted); }
+
+        .coach-quote {
+            font-size: 13px; color: var(--text-secondary);
+            line-height: 1.7;
+            padding-left: 46px;
+            max-height: 60px;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+        }
+
+        .coach-card.expanded .coach-quote { max-height: 500px; }
+
+        .coach-prediction {
+            display: inline-block;
+            margin-top: 8px; margin-left: 46px;
+            padding: 4px 12px;
+            font-size: 12px; font-weight: 700;
+            border-radius: 100px;
+            background: rgba(59,130,246,0.15);
+            color: var(--accent-blue);
+        }
+
+        .expand-hint {
+            font-size: 11px; color: var(--text-muted);
+            margin-left: 46px; margin-top: 6px;
+        }
+
+        /* === X Factors === */
+        .xfactor-list { display: flex; flex-direction: column; gap: 10px; }
+
+        .xfactor-item {
+            display: flex; align-items: flex-start; gap: 12px;
+            padding: 14px;
+            background: var(--bg-glass);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-glass);
+        }
+
+        .xfactor-icon { font-size: 24px; flex-shrink: 0; }
+        .xfactor-title { font-size: 13px; font-weight: 700; margin-bottom: 2px; }
+        .xfactor-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.6; }
+
+        /* === Footer === */
+        .footer {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid var(--border-glass);
+            margin-top: 40px;
+        }
+
+        .footer-disclaimer {
+            font-size: 12px; color: var(--text-muted);
+            max-width: 500px; margin: 0 auto 16px;
+            line-height: 1.6;
+        }
+
+        .footer-cta {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 10px 24px;
+            background: var(--gradient-purple);
+            border: none; border-radius: 100px;
+            color: #fff; font-size: 13px; font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .footer-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(139,92,246,0.3);
+        }
+
+        /* === Animations === */
+        .fade-up {
+            opacity: 0; transform: translateY(30px);
+            transition: opacity 0.6s, transform 0.6s;
+        }
+
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+        /* === Responsive: Tablet (≤768px) === */
+        @media (max-width: 768px) {
+            .container { padding: 0 16px; }
+            .hero { padding: 40px 0 28px; }
+            .hero h1 { font-size: 12px; letter-spacing: 2px; }
+            .team-grid { grid-template-columns: 1fr; }
+            .dim-grid { grid-template-columns: 1fr; }
+            .card { padding: 22px; margin-bottom: 18px; }
+            .matchup { gap: 20px; }
+            .team-flag { width: 80px; height: 80px; font-size: 44px; }
+            .team-name { font-size: 18px; }
+            .vs-circle { width: 50px; height: 50px; font-size: 15px; }
+            .score-number { font-size: 56px; }
+            .score-display { gap: 16px; }
+            .score-table td { padding: 10px 8px; font-size: 13px; }
+            .score-table .score-val { font-size: 14px; }
+            .coach-quote { padding-left: 0; margin-top: 8px; }
+            .coach-prediction { margin-left: 0; }
+            .expand-hint { margin-left: 0; }
+        }
+
+        /* === Responsive: Mobile (≤480px) === */
+        @media (max-width: 480px) {
+            .container { padding: 0 12px; }
+
+            /* Hero */
+            .hero { padding: 28px 0 20px; }
+            .hero::before { width: 400px; height: 200px; }
+            .version-badge { font-size: 10px; padding: 5px 12px; margin-bottom: 14px; }
+            .hero h1 { font-size: 11px; letter-spacing: 1.5px; margin-bottom: 16px; }
+
+            /* Matchup */
+            .matchup { gap: 12px; }
+            .team-flag { width: 64px; height: 64px; font-size: 36px; border-width: 1.5px; }
+            .team-name { font-size: 16px; letter-spacing: 0.5px; }
+            .team-rank { font-size: 10px; padding: 2px 8px; }
+            .vs-circle { width: 42px; height: 42px; font-size: 13px; font-weight: 800; }
+
+            /* Cards */
+            .card { padding: 16px; margin-bottom: 14px; border-radius: 12px; }
+            .card-header { gap: 10px; margin-bottom: 14px; padding-bottom: 12px; }
+            .card-icon { width: 34px; height: 34px; font-size: 17px; border-radius: 8px; }
+            .card-title { font-size: 14px; }
+            .card-subtitle { font-size: 10px; }
+
+            /* Evolution */
+            .evo-stats { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+            .evo-stat { padding: 10px 6px; }
+            .evo-stat-value { font-size: 18px; }
+            .evo-stat-label { font-size: 10px; }
+            .evo-change { font-size: 12px; padding: 10px 12px; line-height: 1.7; }
+
+            /* Prediction */
+            .prediction-hero { padding: 28px 12px; }
+            .prediction-hero .card-header { margin-bottom: 8px; }
+            .prediction-hero .card-title { font-size: 15px !important; }
+            .score-display { gap: 10px; }
+            .score-team .flag { font-size: 36px; }
+            .score-team .name { font-size: 12px; }
+            .score-number { font-size: 48px; }
+            .score-colon { font-size: 36px; }
+            .confidence-bar { gap: 4px; margin-top: 12px; }
+            .confidence-star { font-size: 16px; }
+            .confidence-label { font-size: 11px; margin-left: 4px; }
+            .prediction-reason { font-size: 13px; padding: 12px; line-height: 1.7; margin-top: 14px; }
+
+            /* Probability Bars */
+            .prob-row { flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+            .prob-label { width: auto; min-width: 0; font-size: 12px; text-align: left; flex-shrink: 0; }
+            .prob-bar-track { height: 28px; min-width: 0; }
+            .prob-bar-fill { font-size: 11px; padding-right: 8px; }
+            .prob-change { font-size: 10px; width: auto; }
+
+            /* Score Table → Mobile Cards */
+            .score-table { border-spacing: 0 4px; }
+            .score-table th { font-size: 10px; padding: 6px 6px; letter-spacing: 0.5px; }
+            .score-table th:last-child { display: none; }
+            .score-table td { padding: 10px 6px; font-size: 12px; }
+            .score-table td:last-child { display: none; }
+            .score-table tr td:first-child { width: 36px; font-size: 16px; }
+            .score-table .score-val { font-size: 13px; }
+            .score-table .score-prob { font-size: 11px; padding: 2px 8px; }
+
+            /* Dimension Items */
+            .dim-grid { gap: 8px; }
+            .dim-item { padding: 12px 10px; gap: 10px; }
+            .dim-icon { font-size: 18px; }
+            .dim-name { font-size: 12px; }
+            .dim-weight { font-size: 10px; }
+            .dim-winner { font-size: 10px; padding: 2px 6px; }
+            .dim-item.new::after { font-size: 8px; padding: 1px 5px; }
+
+            /* Team Panels */
+            .team-panel { padding: 14px; }
+            .team-panel-header .flag { font-size: 24px; }
+            .team-panel-header .name { font-size: 14px; }
+            .power-label { font-size: 11px; }
+            .power-text { font-size: 12px; line-height: 1.6; }
+            .power-item { margin-bottom: 10px; }
+
+            /* Coaches */
+            .coach-card { padding: 14px; margin-bottom: 10px; }
+            .coach-header { gap: 8px; margin-bottom: 8px; }
+            .coach-avatar { width: 32px; height: 32px; font-size: 16px; }
+            .coach-name { font-size: 13px; }
+            .coach-style { font-size: 10px; }
+            .coach-quote { font-size: 12px; line-height: 1.6; padding-left: 0; margin-top: 6px; max-height: 48px; }
+            .coach-card.expanded .coach-quote { max-height: 400px; }
+            .coach-prediction { font-size: 11px; margin-left: 0; margin-top: 6px; padding: 3px 10px; }
+            .expand-hint { font-size: 10px; margin-left: 0; margin-top: 4px; }
+
+            /* X Factors */
+            .xfactor-list { gap: 8px; }
+            .xfactor-item { padding: 12px; gap: 10px; }
+            .xfactor-icon { font-size: 20px; }
+            .xfactor-title { font-size: 12px; }
+            .xfactor-desc { font-size: 11px; line-height: 1.5; }
+
+            /* Footer */
+            .footer { padding: 28px 0; margin-top: 24px; }
+            .footer-disclaimer { font-size: 11px; line-height: 1.5; padding: 0 8px; }
+            .footer-cta { font-size: 12px; padding: 10px 20px; }
+        }
+
+        /* === Responsive: Small Mobile (≤360px) === */
+        @media (max-width: 360px) {
+            .container { padding: 0 8px; }
+            .matchup { gap: 8px; }
+            .team-flag { width: 54px; height: 54px; font-size: 30px; }
+            .team-name { font-size: 14px; }
+            .team-rank { font-size: 9px; }
+            .vs-circle { width: 36px; height: 36px; font-size: 11px; }
+            .score-number { font-size: 40px; }
+            .score-colon { font-size: 28px; }
+            .card { padding: 14px; }
+            .card-title { font-size: 13px; }
+            .evo-stats { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+            .evo-stat-value { font-size: 16px; }
+            .prob-label { font-size: 11px; }
+            .dim-item { padding: 10px 8px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+        <a href="index.html" class="nav-back">
+            <span>←</span> 返回赛事大厅
+        </a>
+        <div class="nav-title">2026 世界杯预测报告</div>
+    </nav>
+    <div class="bg-particles"></div>
+    <div class="container">
+
+        <!-- Hero -->
+        <section class="hero fade-up">
+            <div class="version-badge">🧬 v3.0 十二维度自我进化引擎</div>
+            <h1>2026 FIFA World Cup · 比分预测报告</h1>
+            <div class="matchup">
+                <div class="team">
+                    <div class="team-flag korea">🇰🇷</div>
+                    <div class="team-name">韩国</div>
+                    <div class="team-rank">FIFA #23 · Elo 1760</div>
+                </div>
+                <div class="vs-circle">VS</div>
+                <div class="team">
+                    <div class="team-flag mexico">🇲🇽</div>
+                    <div class="team-name">墨西哥</div>
+                    <div class="team-rank">FIFA #15 · Elo 1810</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Evolution Statement -->
+        <div class="card evolution-card fade-up">
+            <div class="card-header">
+                <div class="card-icon" style="background:var(--gradient-purple)">🧬</div>
+                <div>
+                    <div class="card-title">自我进化声明</div>
+                    <div class="card-subtitle">Evolution Statement · Epoch 1</div>
+                </div>
+            </div>
+            <div class="evo-stats">
+                <div class="evo-stat">
+                    <div class="evo-stat-value">2</div>
+                    <div class="evo-stat-label">总预测次数</div>
+                </div>
+                <div class="evo-stat">
+                    <div class="evo-stat-value">0</div>
+                    <div class="evo-stat-label">已验证</div>
+                </div>
+                <div class="evo-stat">
+                    <div class="evo-stat-value">12</div>
+                    <div class="evo-stat-label">分析维度</div>
+                </div>
+            </div>
+            <div class="evo-change">
+                🔄 <strong>本次升级</strong>：从七维度升级至十二维度。新增门将(+3%)、体能(+1%)、替补(+2%)有利墨西哥，定位球(+2%)有利韩国。预测从 1:1 修正为 <strong>墨西哥 1:0</strong>。
+            </div>
+        </div>
+
+        <!-- 🎯 Final Prediction -->
+        <div class="card prediction-hero fade-up">
+            <div class="card-header" style="justify-content:center; border:none; padding:0; margin-bottom:12px;">
+                <div class="card-title" style="font-size:18px;">🎯 终极比分预测</div>
+            </div>
+            <div class="score-display">
+                <div class="score-team">
+                    <div class="flag">🇲🇽</div>
+                    <div class="name">墨西哥</div>
+                </div>
+                <div class="score-number" id="scoreA">1</div>
+                <div class="score-colon">:</div>
+                <div class="score-number" id="scoreB">0</div>
+                <div class="score-team">
+                    <div class="flag">🇰🇷</div>
+                    <div class="name">韩国</div>
+                </div>
+            </div>
+            <div class="confidence-bar">
+                <span class="confidence-star active">⭐</span>
+                <span class="confidence-star active">⭐</span>
+                <span class="confidence-star active">⭐</span>
+                <span class="confidence-star active">⭐</span>
+                <span class="confidence-star inactive">⭐</span>
+                <span class="confidence-label">信心指数 4/5</span>
+            </div>
+            <div class="prediction-reason">
+                十二维度全景扫描后，墨西哥在门将（奥乔亚大赛超神）、替补深度、主场优势三个新维度全面占优，将在70分钟左右凭借精妙的阵地战配合或定位球二次进攻打入唯一进球。韩国拼尽全力但攻坚能力不足，0-1惜败。
+            </div>
+        </div>
+
+        <!-- Probability -->
+        <div class="card fade-up">
+            <div class="card-header">
+                <div class="card-icon" style="background:var(--gradient-blue)">📊</div>
+                <div>
+                    <div class="card-title">概率模型输出</div>
+                    <div class="card-subtitle">Elo-Poisson Probability Model</div>
+                </div>
+            </div>
+            <div class="prob-row">
+                <div class="prob-label">🇰🇷 韩国胜</div>
+                <div class="prob-bar-track">
+                    <div class="prob-bar-fill korea" data-width="32.8">32.8%</div>
+                </div>
+                <div class="prob-change down">↓2.4%</div>
+            </div>
+            <div class="prob-row">
+                <div class="prob-label">🤝 平局</div>
+                <div class="prob-bar-track">
+                    <div class="prob-bar-fill draw" data-width="24.2">24.2%</div>
+                </div>
+                <div class="prob-change">↑0.4%</div>
+            </div>
+            <div class="prob-row">
+                <div class="prob-label">🇲🇽 墨西哥胜</div>
+                <div class="prob-bar-track">
+                    <div class="prob-bar-fill mexico" data-width="43.0">43.0%</div>
+                </div>
+                <div class="prob-change">↑2.0%</div>
+            </div>
+
+            <h3 style="font-size:14px; margin:24px 0 12px; color:var(--text-secondary);">🏅 最可能比分 TOP 3</h3>
+            <table class="score-table">
+                <thead><tr><th></th><th>比分</th><th>概率</th><th>场景</th></tr></thead>
+                <tbody>
+                    <tr>
+                        <td>🥇</td>
+                        <td><span class="score-val">🇲🇽 1 : 0 🇰🇷</span></td>
+                        <td><span class="score-prob">15.8%</span></td>
+                        <td style="font-size:12px;color:var(--text-secondary)">墨西哥凭借门将优势+控球磨死韩国</td>
+                    </tr>
+                    <tr>
+                        <td>🥈</td>
+                        <td><span class="score-val">🇰🇷 1 : 1 🇲🇽</span></td>
+                        <td><span class="score-prob">15.2%</span></td>
+                        <td style="font-size:12px;color:var(--text-secondary)">韩国凭定位球扳平</td>
+                    </tr>
+                    <tr>
+                        <td>🥉</td>
+                        <td><span class="score-val">🇲🇽 2 : 1 🇰🇷</span></td>
+                        <td><span class="score-prob">11.8%</span></td>
+                        <td style="font-size:12px;color:var(--text-secondary)">墨西哥两球，孙兴慜反击安慰球</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 12 Dimensions -->
+        <div class="card fade-up">
+            <div class="card-header">
+                <div class="card-icon" style="background:var(--gradient-green)">🔬</div>
+                <div>
+                    <div class="card-title">十二维度全景扫描</div>
+                    <div class="card-subtitle">12-Dimensional Analysis Radar</div>
+                </div>
+            </div>
+            <div class="dim-grid">
+                <div class="dim-item"><div class="dim-icon">🌟</div><div class="dim-info"><div class="dim-name">核心球员状态</div><div class="dim-weight">权重 20%</div></div><div class="dim-winner even">持平</div></div>
+                <div class="dim-item"><div class="dim-icon">📈</div><div class="dim-info"><div class="dim-name">近期比赛表现</div><div class="dim-weight">权重 20%</div></div><div class="dim-winner korea">🇰🇷 +2%</div></div>
+                <div class="dim-item"><div class="dim-icon">📜</div><div class="dim-info"><div class="dim-name">历史交锋</div><div class="dim-weight">权重 10%</div></div><div class="dim-winner mexico">🇲🇽 +3%</div></div>
+                <div class="dim-item"><div class="dim-icon">🧩</div><div class="dim-info"><div class="dim-name">战术克制</div><div class="dim-weight">权重 10%</div></div><div class="dim-winner mexico">🇲🇽 +3%</div></div>
+                <div class="dim-item"><div class="dim-icon">💰</div><div class="dim-info"><div class="dim-name">赔率数据</div><div class="dim-weight">权重 8%</div></div><div class="dim-winner mexico">🇲🇽 +2%</div></div>
+                <div class="dim-item"><div class="dim-icon">🏅</div><div class="dim-info"><div class="dim-name">Elo排名</div><div class="dim-weight">权重 4%</div></div><div class="dim-winner mexico">🇲🇽 +1%</div></div>
+                <div class="dim-item"><div class="dim-icon">🌦️</div><div class="dim-info"><div class="dim-name">场外因素</div><div class="dim-weight">权重 3%</div></div><div class="dim-winner even">持平</div></div>
+                <div class="dim-item new"><div class="dim-icon">🧤</div><div class="dim-info"><div class="dim-name">门将因素</div><div class="dim-weight">权重 5%</div></div><div class="dim-winner mexico">🇲🇽 +3%</div></div>
+                <div class="dim-item new"><div class="dim-icon">⚡</div><div class="dim-info"><div class="dim-name">体能疲劳</div><div class="dim-weight">权重 5%</div></div><div class="dim-winner mexico">🇲🇽 +1%</div></div>
+                <div class="dim-item new"><div class="dim-icon">🎯</div><div class="dim-info"><div class="dim-name">定位球能力</div><div class="dim-weight">权重 5%</div></div><div class="dim-winner korea">🇰🇷 +2%</div></div>
+                <div class="dim-item new"><div class="dim-icon">🔥</div><div class="dim-info"><div class="dim-name">比赛性质</div><div class="dim-weight">权重 5%</div></div><div class="dim-winner even">持平</div></div>
+                <div class="dim-item new"><div class="dim-icon">💺</div><div class="dim-info"><div class="dim-name">替补深度</div><div class="dim-weight">权重 5%</div></div><div class="dim-winner mexico">🇲🇽 +2%</div></div>
+            </div>
+        </div>
+
+        <!-- Team Power -->
+        <div class="card fade-up">
+            <div class="card-header">
+                <div class="card-icon" style="background:var(--gradient-fire)">⚔️</div>
+                <div>
+                    <div class="card-title">双方实力透视</div>
+                    <div class="card-subtitle">Power Scan</div>
+                </div>
+            </div>
+            <div class="team-grid">
+                <div class="team-panel korea-panel">
+                    <div class="team-panel-header">
+                        <div class="flag">🇰🇷</div>
+                        <div class="name">韩国</div>
+                    </div>
+                    <div class="power-item"><div class="power-label">🌟 核心武器</div><div class="power-text">孙兴慜——33岁的亚洲足球天花板。黄喜灿英超历练成可靠第二攻击点。金玟哉后防"韩国长城"。</div></div>
+                    <div class="power-item"><div class="power-label">🧩 战术 DNA</div><div class="power-text">4-2-3-1 高强度跑动 + 快速反击 + 铁血防守</div></div>
+                    <div class="power-item"><div class="power-label">📈 近期状态</div><div class="power-text">世预赛亚洲头名出线，近5场3胜1平1负 📈 上升期</div></div>
+                    <div class="power-item"><div class="power-label">💀 致命软肋</div><div class="power-text">中场创造力平庸，高位逼抢时后场出球单一</div></div>
+                    <div class="power-item"><div class="power-label">🧤 门将</div><div class="power-text">金承奎，扑救能力中等偏上，大赛经验是最大资本</div></div>
+                </div>
+                <div class="team-panel mexico-panel">
+                    <div class="team-panel-header">
+                        <div class="flag">🇲🇽</div>
+                        <div class="name">墨西哥</div>
+                    </div>
+                    <div class="power-item"><div class="power-label">🌟 核心武器</div><div class="power-text">希门尼斯——"阿兹特克神庙的献祭之刃"。阿尔瓦雷斯中场绞杀器，攻守兼备中轴线。</div></div>
+                    <div class="power-item"><div class="power-label">🧩 战术 DNA</div><div class="power-text">4-3-3 控球 + 短传渗透 + 高位逼抢</div></div>
+                    <div class="power-item"><div class="power-label">📈 近期状态</div><div class="power-text">东道主之一，巨大主场优势。近5场2胜2平1负</div></div>
+                    <div class="power-item"><div class="power-label">💀 致命软肋</div><div class="power-text">大赛恐惧症！连续7届世界杯止步16强</div></div>
+                    <div class="power-item"><div class="power-label">🧤 门将</div><div class="power-text">奥乔亚——40岁传奇，大赛扑救率~78%，超神模式</div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Coaches Roundtable -->
+        <div class="card fade-up">
+            <div class="card-header">
+                <div class="card-icon" style="background:linear-gradient(135deg, #f59e0b, #ef4444)">🎭</div>
+                <div>
+                    <div class="card-title">虚拟教练团战术博弈</div>
+                    <div class="card-subtitle">Coaches' Roundtable · 点击展开</div>
+                </div>
+            </div>
+            <div class="coach-card" onclick="this.classList.toggle('expanded')">
+                <div class="coach-header">
+                    <div class="coach-avatar" style="background:var(--gradient-blue)">🧠</div>
+                    <div><div class="coach-name">瓜迪奥拉式分析师</div><div class="coach-style">控球数据派</div></div>
+                </div>
+                <div class="coach-quote">墨西哥控球率55%+，传球成功率87%碾压韩国。场均xG 1.6 vs 1.2。但韩国的定位球是"暗线攻击"——孙兴慜任意球+韩国头球争抢能力可能突破控球体系。墨西哥60-70分钟阵地战破门，韩国定位球回敬一个。</div>
+                <div class="coach-prediction">预测：墨西哥 2-1 韩国</div>
+                <div class="expand-hint">▼ 点击展开完整分析</div>
+            </div>
+            <div class="coach-card" onclick="this.classList.toggle('expanded')">
+                <div class="coach-header">
+                    <div class="coach-avatar" style="background:linear-gradient(135deg, #6366f1, #3b82f6)">⚡</div>
+                    <div><div class="coach-name">穆里尼奥式分析师</div><div class="coach-style">防守反击实战派</div></div>
+                </div>
+                <div class="coach-quote">新增的门将维度是关键——奥乔亚40岁老腰75分钟后体能下降，这正是韩国反击窗口。替补深度维度提醒我们比赛越拖后对韩国越不利。韩国必须在70分钟内像弹簧刀一样蜷缩后一击致命。</div>
+                <div class="coach-prediction">预测：韩国 1-0 墨西哥</div>
+                <div class="expand-hint">▼ 点击展开完整分析</div>
+            </div>
+            <div class="coach-card" onclick="this.classList.toggle('expanded')">
+                <div class="coach-header">
+                    <div class="coach-avatar" style="background:linear-gradient(135deg, #8b5cf6, #ec4899)">🔮</div>
+                    <div><div class="coach-name">贝利式预言家</div><div class="coach-style">玄学直觉派</div></div>
+                </div>
+                <div class="coach-quote">北美世界杯东道主走得更远。但韩国每12年一次世界杯奇迹——2002四强、2018淘汰德国、2026又到了！两个天命碰撞，东道主压力可能反噬，韩国无畏基因被激活。加时赛可能走向点球大战。</div>
+                <div class="coach-prediction">预测：1-1（点球墨西哥胜）</div>
+                <div class="expand-hint">▼ 点击展开完整分析</div>
+            </div>
+            <div class="coach-card" onclick="this.classList.toggle('expanded')">
+                <div class="coach-header">
+                    <div class="coach-avatar" style="background:var(--gradient-green)">📊</div>
+                    <div><div class="coach-name">数据科学家</div><div class="coach-style">纯模型派</div></div>
+                </div>
+                <div class="coach-quote">十二维度修正后：韩国32.8%/平局24.2%/墨西哥43.0%。门将修正(+3%)和替补(+2%)是本次新增的墨西哥优势来源。泊松模型λ_韩国≈0.88，λ_墨西哥≈1.42。最可能比分墨西哥1:0(15.8%)。比七维度版本墨西哥胜率上调2%。</div>
+                <div class="coach-prediction">预测：墨西哥 1-0 韩国</div>
+                <div class="expand-hint">▼ 点击展开完整分析</div>
+            </div>
+            <div class="coach-card" onclick="this.classList.toggle('expanded')">
+                <div class="coach-header">
+                    <div class="coach-avatar" style="background:var(--gradient-fire)">🎙️</div>
+                    <div><div class="coach-name">黄健翔式解说员</div><div class="coach-style">情绪感染派</div></div>
+                </div>
+                <div class="coach-quote">第62分钟！墨西哥角球！希门尼斯头球！金承奎飞身扑出！二次进攻！洛萨诺补射！球进了！1-0！第78分钟！韩国角球！金玟哉头球——顶——进——了！1-1！太极虎的怒吼让北美颤抖！这就是世界杯！</div>
+                <div class="coach-prediction">预测：1-1 平局</div>
+                <div class="expand-hint">▼ 点击展开完整分析</div>
+            </div>
+        </div>
+
+        <!-- X Factors -->
+        <div class="card fade-up">
+            <div class="card-header">
+                <div class="card-icon" style="background:linear-gradient(135deg, #ef4444, #ec4899)">🔮</div>
+                <div>
+                    <div class="card-title">关键看点与 X 变量</div>
+                    <div class="card-subtitle">Game Changers</div>
+                </div>
+            </div>
+            <div class="xfactor-list">
+                <div class="xfactor-item">
+                    <div class="xfactor-icon">🔑</div>
+                    <div><div class="xfactor-title">比赛关键人物：奥乔亚 🇲🇽</div><div class="xfactor-desc">40岁传奇门将的最后一舞，如果进入"超神模式"，韩国将一球难进</div></div>
+                </div>
+                <div class="xfactor-item">
+                    <div class="xfactor-icon">⏰</div>
+                    <div><div class="xfactor-title">进球时间窗口：55-70 分钟</div><div class="xfactor-desc">体能下降窗口 + 教练换人调整，最可能出现进球。75分钟后替补深度差异显现</div></div>
+                </div>
+                <div class="xfactor-item">
+                    <div class="xfactor-icon">📺</div>
+                    <div><div class="xfactor-title">VAR 点球判罚</div><div class="xfactor-desc">禁区内身体对抗可能引发争议判罚，一个点球就能改变比赛走向</div></div>
+                </div>
+                <div class="xfactor-item">
+                    <div class="xfactor-icon">🎯</div>
+                    <div><div class="xfactor-title">韩国的定位球暗线</div><div class="xfactor-desc">3+次角球/任意球机会时，金玟哉的头球威胁不容忽视</div></div>
+                </div>
+                <div class="xfactor-item">
+                    <div class="xfactor-icon">🎰</div>
+                    <div><div class="xfactor-title">博彩视角</div><div class="xfactor-desc">市场可能低估韩国的定位球得分能力。墨西哥让半球中高水时韩国受让有价值。小球值得关注</div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer fade-up">
+            <div class="footer-disclaimer">
+                ⚠️ 本预测基于 Elo-泊松概率模型 + 十二维度全网数据分析，仅供娱乐参考，不构成任何博彩建议。足球是圆的，什么都可能发生！⚽
+            </div>
+            <button class="footer-cta" onclick="alert('比赛结束后告诉我真实比分，我会自动复盘校准模型！\n说：结果 韩国 X:X 墨西哥')">
+                🧬 比赛结束后录入结果 → 触发模型进化
+            </button>
+            <p style="font-size:11px; color:var(--text-muted); margin-top:16px;">
+                Powered by World Cup Predictor v3.0 · SkillOpt Self-Evolution Engine · Built with ❤️
+            </p>
+        </footer>
+
+    </div>
+
+    <script>
+        // Intersection Observer for fade-up animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, i) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => entry.target.classList.add('visible'), i * 80);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+        // Animate probability bars on scroll
+        const barObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.querySelectorAll('.prob-bar-fill').forEach(bar => {
+                        const width = bar.dataset.width;
+                        setTimeout(() => bar.style.width = width + '%', 300);
+                    });
+                    barObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+
+        document.querySelectorAll('.prob-row').forEach(el => barObserver.observe(el.closest('.card')));
+
+        // Score count-up animation
+        function animateScore(el, target) {
+            let current = 0;
+            const step = () => {
+                if (current <= target) {
+                    el.textContent = current;
+                    current++;
+                    setTimeout(step, 200);
+                }
+            };
+            setTimeout(step, 800);
+        }
+
+        const scoreObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateScore(document.getElementById('scoreA'), 1);
+                    animateScore(document.getElementById('scoreB'), 0);
+                    scoreObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        scoreObserver.observe(document.querySelector('.prediction-hero'));
+    </script>
+</body>
+</html>

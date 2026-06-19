@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>预测报告：美国 vs 澳大利亚 | 2026世界杯</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Noto+Sans+SC:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #060a14; --bg-card: rgba(14, 20, 36, 0.85); --bg-glass: rgba(255,255,255,0.03);
+            --border-glass: rgba(255,255,255,0.07); --text-primary: #e8ecf4; --text-secondary: #8b95a8;
+            --text-muted: #4a5568; --accent-blue: #3b82f6; --accent-gold: #f6c744; --accent-green: #10b981;
+            --accent-red: #ef4444; --gradient-blue: linear-gradient(135deg, #3b82f6, #06b6d4);
+            --gradient-purple: linear-gradient(135deg, #8b5cf6, #ec4899); --gradient-fire: linear-gradient(135deg, #ef4444, #f59e0b);
+            --gradient-green: linear-gradient(135deg, #10b981, #059669); --radius: 16px;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', 'Noto Sans SC', sans-serif; background: var(--bg-primary); color: var(--text-primary);
+            line-height: 1.6; overflow-x: hidden; -webkit-overflow-scrolling: touch;
+            padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right);
+        }
+
+        /* === Top Navigation === */
+        .top-nav {
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(10, 14, 26, 0.85);
+            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-glass);
+            padding: 14px 20px; padding-top: max(14px, env(safe-area-inset-top));
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .nav-back { display: inline-flex; align-items: center; gap: 6px; color: var(--text-primary); text-decoration: none; font-size: 14px; font-weight: 600; transition: color 0.2s; }
+        .nav-back:hover { color: var(--accent-blue); }
+        .nav-title { font-size: 11px; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; font-weight: 700; display: none; }
+        @media (min-width: 480px) { .nav-title { display: block; } }
+
+        /* === Animated Background === */
+        .bg-particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; background: radial-gradient(ellipse 800px 600px at 50% -20%, rgba(59,130,246,0.1) 0%, transparent 70%); }
+        .container { max-width: 800px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 1; }
+
+        /* === Prediction Hero === */
+        .prediction-hero { text-align: center; padding: 50px 0 30px; }
+        .match-badge { display: inline-block; padding: 6px 16px; background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.3); border-radius: 100px; font-size: 12px; font-weight: 700; color: var(--accent-blue); margin-bottom: 16px; letter-spacing: 1px; }
+        .matchup { display: flex; align-items: center; justify-content: center; gap: 40px; margin-bottom: 24px; }
+        .team { display: flex; flex-direction: column; align-items: center; gap: 8px; flex: 1; }
+        .team-flag { width: 100px; height: 100px; display: flex; align-items: center; justify-content: center; font-size: 60px; background: var(--bg-glass); border: 1px solid var(--border-glass); border-radius: 50%; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .team-name { font-size: 24px; font-weight: 900; }
+        .team-rank { font-size: 12px; color: var(--text-muted); }
+        .score-display { display: flex; align-items: center; justify-content: center; gap: 20px; }
+        .score-number { font-size: 80px; font-weight: 900; background: var(--gradient-blue); -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height: 1; }
+        .score-colon { font-size: 40px; color: var(--text-muted); font-weight: 300; }
+
+        /* === Cards === */
+        .card { background: var(--bg-card); border: 1px solid var(--border-glass); border-radius: var(--radius); padding: 24px; margin-bottom: 20px; backdrop-filter: blur(10px); }
+        .card-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; border-bottom: 1px solid var(--border-glass); padding-bottom: 16px; }
+        .card-icon { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; font-size: 18px; background: var(--gradient-blue); border-radius: 10px; }
+        .card-title { font-size: 16px; font-weight: 700; }
+        .card-subtitle { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+
+        /* === Evo Banner === */
+        .evo-banner { display: flex; align-items: flex-start; gap: 16px; background: rgba(139,92,246,0.1); border: 1px solid rgba(139,92,246,0.3); border-radius: 12px; padding: 16px; margin-bottom: 24px; }
+        .evo-icon { font-size: 24px; animation: pulse 2s infinite; }
+        .evo-content h4 { color: var(--accent-purple); font-size: 14px; margin-bottom: 4px; }
+        .evo-content p { font-size: 12px; color: var(--text-secondary); margin: 0; }
+        @keyframes pulse { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.1); opacity: 0.8; } }
+
+        /* === Power Scan === */
+        .team-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .team-profile h4 { display: flex; align-items: center; gap: 8px; font-size: 15px; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px dashed var(--border-glass); }
+        .trait-list { list-style: none; }
+        .trait-list li { display: flex; align-items: flex-start; gap: 8px; font-size: 13px; color: var(--text-secondary); margin-bottom: 10px; }
+        .trait-label { font-weight: 700; color: var(--text-primary); white-space: nowrap; }
+
+        /* === Probability Bars === */
+        .prob-row { margin-bottom: 16px; }
+        .prob-labels { display: flex; justify-content: space-between; font-size: 12px; font-weight: 600; margin-bottom: 6px; }
+        .prob-bar-bg { width: 100%; height: 8px; background: rgba(0,0,0,0.3); border-radius: 4px; overflow: hidden; }
+        .prob-bar-fill { height: 100%; width: 0; border-radius: 4px; transition: width 1.5s cubic-bezier(0.2, 0.8, 0.2, 1); }
+
+        /* === Coaches === */
+        .coach-card { background: rgba(255,255,255,0.02); border: 1px solid var(--border-glass); border-radius: 12px; padding: 16px; margin-bottom: 12px; cursor: pointer; transition: background 0.3s; }
+        .coach-card:hover { background: rgba(255,255,255,0.04); }
+        .coach-header { display: flex; align-items: center; gap: 12px; }
+        .coach-avatar { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; }
+        .coach-name { font-weight: 700; font-size: 14px; }
+        .coach-style { font-size: 11px; color: var(--text-muted); }
+        .coach-quote { font-size: 13px; color: var(--text-secondary); padding-left: 52px; margin-top: 4px; border-left: 2px solid transparent; display: none; }
+        .coach-prediction { margin-top: 12px; margin-left: 52px; display: inline-block; padding: 4px 12px; background: rgba(255,255,255,0.05); border-radius: 4px; font-size: 12px; font-weight: 700; display: none; }
+        .expand-hint { font-size: 10px; color: var(--text-muted); margin-left: 52px; margin-top: 8px; }
+        .coach-card.expanded .coach-quote, .coach-card.expanded .coach-prediction { display: block; }
+        .coach-card.expanded .expand-hint { display: none; }
+
+        /* === X Factors === */
+        .xfactor-item { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 16px; padding: 12px; background: rgba(255,255,255,0.02); border-radius: 8px; }
+        .xfactor-icon { font-size: 20px; }
+        .xfactor-title { font-weight: 700; font-size: 14px; color: var(--text-primary); margin-bottom: 4px; }
+        .xfactor-desc { font-size: 12px; color: var(--text-secondary); }
+
+        /* === Footer === */
+        .footer { text-align: center; padding: 30px 0; border-top: 1px solid var(--border-glass); margin-top: 20px; }
+        .footer-disclaimer { font-size: 12px; color: var(--text-muted); margin-bottom: 20px; }
+        .footer-cta { display: inline-flex; align-items: center; gap: 8px; padding: 10px 24px; background: var(--gradient-purple); border: none; border-radius: 100px; color: #fff; font-size: 13px; font-weight: 700; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; }
+        .footer-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(139,92,246,0.3); }
+
+        .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.6s, transform 0.6s; }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 768px) {
+            .team-grid { grid-template-columns: 1fr; }
+            .team-flag { width: 80px; height: 80px; font-size: 44px; }
+            .score-number { font-size: 56px; }
+        }
+        @media (max-width: 480px) {
+            .prediction-hero { padding: 28px 0 20px; }
+            .matchup { gap: 8px; }
+            .team-flag { width: 54px; height: 54px; font-size: 30px; }
+            .team-name { font-size: 14px; }
+            .team-rank { font-size: 9px; }
+            .score-number { font-size: 40px; }
+            .score-colon { font-size: 28px; }
+            .card { padding: 14px; }
+            .card-title { font-size: 13px; }
+            .coach-quote { padding-left: 0; margin-top: 12px; border-left: 2px solid var(--border-glass); padding-left: 12px; }
+            .coach-prediction, .expand-hint { margin-left: 0; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+        <a href="index.html" class="nav-back"><span>←</span> 返回赛事大厅</a>
+        <div class="nav-title">2026 世界杯预测报告</div>
+    </nav>
+    
+    <div class="bg-particles"></div>
+    <div class="container">
+
+        <!-- Hero -->
+        <section class="prediction-hero fade-up">
+            <div class="match-badge">🔥 小组赛焦点战 · 西雅图 Lumen Field</div>
+            <div class="matchup">
+                <div class="team">
+                    <div class="team-flag">🇺🇸</div>
+                    <div class="team-name">美国</div>
+                    <div class="team-rank">FIFA #11 · 状态火热</div>
+                </div>
+                <div class="score-display">
+                    <div class="score-number" id="scoreA">0</div>
+                    <div class="score-colon">:</div>
+                    <div class="score-number" id="scoreB">0</div>
+                </div>
+                <div class="team">
+                    <div class="team-flag">🇦🇺</div>
+                    <div class="team-name">澳大利亚</div>
+                    <div class="team-rank">FIFA #24 · 防反尖刀</div>
+                </div>
+            </div>
+            <p style="font-size:12px; color:var(--text-muted);">预测置信度：⭐⭐⭐⭐ (85% 基于最新泊松概率模型)</p>
+        </section>
+
+        <!-- Evo Statement -->
+        <div class="evo-banner fade-up">
+            <div class="evo-icon">🧬</div>
+            <div class="evo-content">
+                <h4>SkillOpt 自我进化声明</h4>
+                <p>基于首轮小组赛数据，引擎已将【近期状态】与【核心球员】权重上调至 25%。本次预测特别纳入了【东道主效应】及【伤病影响】(普利西奇)。Elo 模型胜率期望值经过主场+4%修正，美国目前全面占优。</p>
+            </div>
+        </div>
+
+        <!-- Power Scan -->
+        <div class="card fade-up">
+            <div class="card-header">
+                <div class="card-icon">⚔️</div>
+                <div><div class="card-title">双方实力透视</div><div class="card-subtitle">Power Scan</div></div>
+            </div>
+            <div class="team-grid">
+                <div class="team-profile">
+                    <h4>🇺🇸 美国队战力画像</h4>
+                    <ul class="trait-list">
+                        <li><span class="trait-label">核心武器：</span>普利西奇 (Pulisic) — "美国队长"，纵向突破极具破坏力。</li>
+                        <li><span class="trait-label">战术DNA：</span>波切蒂诺的高强度压迫与垂直打击 (3-4-2-1)，中场绞杀凶狠。</li>
+                        <li><span class="trait-label">近期状态：</span>首战4-1大胜巴拉圭，士气正盛，主场加持犹如开挂。</li>
+                        <li><span class="trait-label">致命软肋：</span>防线面对高空球容易暴雷，且普利西奇小腿拉伤可能影响发挥。</li>
+                    </ul>
+                </div>
+                <div class="team-profile">
+                    <h4>🇦🇺 澳大利亚战力画像</h4>
+                    <ul class="trait-list">
+                        <li><span class="trait-label">核心武器：</span>杰克逊·欧文与苏塔 — 中场节拍器与后防线上的"澳洲空霸"。</li>
+                        <li><span class="trait-label">战术DNA：</span>波波维奇的坚固防线与快速反击 (3-4-2-1)，强调身体对抗和高空轰炸。</li>
+                        <li><span class="trait-label">近期状态：</span>首战2-0稳健击败土耳其，防守端滴水不漏。</li>
+                        <li><span class="trait-label">致命软肋：</span>中场创造力不足，一旦落后很难通过阵地战撕开对手防线。</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tactical Breakdown -->
+        <div class="card fade-up">
+            <div class="card-header">
+                <div class="card-icon" style="background:var(--gradient-green)">🧩</div>
+                <div><div class="card-title">战术克制与推演</div><div class="card-subtitle">Tactical Breakdown</div></div>
+            </div>
+            <ul class="trait-list">
+                <li><span class="trait-label">历史交锋：</span>美国历史 2胜1平1负 占据优势。最近一次在2025年友谊赛，美国2-1险胜。</li>
+                <li><span class="trait-label">阵型对抗：</span>3-4-2-1 (高位压迫) vs 3-4-2-1 (低位防反)。这是一场镜像阵型的攻防演练。</li>
+                <li><span class="trait-label">战术克制：</span>美国的边锋群将猛攻澳大利亚两肋，而澳大利亚则会利用定位球和角球打击美国防线的防空弱点。</li>
+                <li><span class="trait-label">胜负手：</span>普利西奇的健康状态 vs 苏塔的高空防御。美国若能早早进球将打崩澳洲，若久攻不下，下半场体能下降后澳大利亚的定位球将极为致命。</li>
+            </ul>
+        </div>
+
+        <!-- Probabilities -->
+        <div class="card fade-up">
+            <div class="card-header">
+                <div class="card-icon" style="background:var(--gradient-purple)">📊</div>
+                <div><div class="card-title">终极概率输出</div><div class="card-subtitle">Poisson-Elo Distribution</div></div>
+            </div>
+            <div class="prob-row">
+                <div class="prob-labels"><span>🇺🇸 美国胜 (-170)</span><span>55.0%</span></div>
+                <div class="prob-bar-bg"><div class="prob-bar-fill" style="background:var(--accent-blue)" data-width="55"></div></div>
+            </div>
+            <div class="prob-row">
+                <div class="prob-labels"><span>🤝 平局 (+280)</span><span>25.0%</span></div>
+                <div class="prob-bar-bg"><div class="prob-bar-fill" style="background:var(--accent-gold)" data-width="25"></div></div>
+            </div>
+            <div class="prob-row">
+                <div class="prob-labels"><span>🇦🇺 澳大利亚胜 (+420)</span><span>20.0%</span></div>
+                <div class="prob-bar-bg"><div class="prob-bar-fill" style="background:var(--accent-green)" data-width="20"></div></div>
+            </div>
+        </div>
+
+        <!-- Coaches Roundtable -->
+        <div class="card fade-up">
+            <div class="card-header">
+                <div class="card-icon" style="background:var(--gradient-fire)">🎙️</div>
+                <div><div class="card-title">五人虚拟教练团博弈</div><div class="card-subtitle">Coaches' Roundtable</div></div>
+            </div>
+            
+            <div class="coach-card" onclick="this.classList.toggle('expanded')">
+                <div class="coach-header"><div class="coach-avatar" style="background:var(--accent-blue)">🧠</div><div><div class="coach-name">瓜迪奥拉式分析师</div><div class="coach-style">控球数据派</div></div></div>
+                <div class="coach-quote">美国的控球率预计会达到65%。波切蒂诺的压迫系统会让澳洲难以出球。核心在于泰勒·亚当斯的单后腰保护，只要他不失位，美国的边翼卫完全可以把防线压到中场，形成半场攻防演练。</div>
+                <div class="coach-prediction">预测：美国 2-0 澳大利亚</div>
+                <div class="expand-hint">▼ 点击展开完整分析</div>
+            </div>
+
+            <div class="coach-card" onclick="this.classList.toggle('expanded')">
+                <div class="coach-header"><div class="coach-avatar" style="background:var(--text-muted)">⚡</div><div><div class="coach-name">穆里尼奥式分析师</div><div class="coach-style">防守反击实战派</div></div></div>
+                <div class="coach-quote">控球率是骗人的！美国压得越上，身后的空当越大。波波维奇的球队最喜欢这种对手。澳大利亚只要守住前30分钟，利用美国急躁的心理，抓一个前场定位球，苏塔的头球就能解决战斗。</div>
+                <div class="coach-prediction">预测：美国 1-1 澳大利亚</div>
+                <div class="expand-hint">▼ 点击展开完整分析</div>
+            </div>
+
+            <div class="coach-card" onclick="this.classList.toggle('expanded')">
+                <div class="coach-header"><div class="coach-avatar" style="background:var(--gradient-purple)">🔮</div><div><div class="coach-name">贝利式预言家</div><div class="coach-style">玄学直觉派</div></div></div>
+                <div class="coach-quote">东道主光环在小组赛第二场总是最耀眼的。西雅图的主场氛围会让对手窒息。而且，美国队在大赛面对身体对抗强硬的球队往往表现不俗，不要低估了美利坚的本土作战意志。</div>
+                <div class="coach-prediction">预测：美国 2-1 澳大利亚</div>
+                <div class="expand-hint">▼ 点击展开完整分析</div>
+            </div>
+
+            <div class="coach-card" onclick="this.classList.toggle('expanded')">
+                <div class="coach-header"><div class="coach-avatar" style="background:var(--gradient-green)">📊</div><div><div class="coach-name">数据科学家</div><div class="coach-style">纯模型派</div></div></div>
+                <div class="coach-quote">泊松模型计算，美国预期进球λ=1.8，澳大利亚λ=0.8。主场优势加持抵消了普利西奇的伤病降权。模型显示 2-1 和 1-0 是最可能的比分。澳大利亚要爆冷的概率不足20%。</div>
+                <div class="coach-prediction">预测：美国 2-1 澳大利亚</div>
+                <div class="expand-hint">▼ 点击展开完整分析</div>
+            </div>
+
+        </div>
+
+        <footer class="footer fade-up">
+            <div class="footer-disclaimer">⚠️ 本预测基于 Elo-泊松模型推演，仅供参考。足球是圆的！⚽</div>
+            <p style="font-size:11px; color:var(--text-muted);">Powered by World Cup Predictor v3.0 · SkillOpt</p>
+        </footer>
+    </div>
+
+    <script>
+        const observer = new IntersectionObserver(entries => { entries.forEach((entry, i) => { if (entry.isIntersecting) { setTimeout(() => entry.target.classList.add('visible'), i * 80); observer.unobserve(entry.target); }}); }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+        const barObserver = new IntersectionObserver(entries => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.querySelectorAll('.prob-bar-fill').forEach(bar => { setTimeout(() => bar.style.width = bar.dataset.width + '%', 300); }); barObserver.unobserve(entry.target); }}); }, { threshold: 0.3 });
+        document.querySelectorAll('.prob-row').forEach(el => barObserver.observe(el.closest('.card')));
+        function animateScore(el, target) { let c = 0; const s = () => { if (c <= target) { el.textContent = c; c++; setTimeout(s, 200); } }; setTimeout(s, 800); }
+        const scoreObserver = new IntersectionObserver(entries => { entries.forEach(entry => { if (entry.isIntersecting) { animateScore(document.getElementById('scoreA'), 2); animateScore(document.getElementById('scoreB'), 1); scoreObserver.unobserve(entry.target); }}); }, { threshold: 0.5 });
+        scoreObserver.observe(document.querySelector('.prediction-hero'));
+    </script>
+</body>
+</html>

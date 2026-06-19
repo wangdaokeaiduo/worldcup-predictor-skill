@@ -64,7 +64,7 @@ python3 .agents/skills/worldcup_predictor/scripts/evolution_ledger.py pending
    python3 .agents/skills/worldcup_predictor/scripts/evolution_ledger.py result <预测ID> <真实比分A> <真实比分B>
    ```
 
-3. **验证完成后，必须同步更新首页 `worldcup_predictions/index.html` 的统计数据**：
+3. **验证完成后，必须同步更新首页 `demo_site/index.html` 的统计数据**：
    - 更新 `id="totalMatches"` 的数字（已预测总场次）
    - 更新 `id="accuracy"` 的百分比（胜平负命中率 = 命中场次 / 已验证场次）
    - 更新「已验证」和「精确命中🎯」的数字
@@ -396,7 +396,7 @@ python3 .agents/skills/worldcup_predictor/scripts/evolution_ledger.py pending
 **【极度重要】**：在向用户输出完预测报告后，你必须在后台静默执行以下保存动作：
 
 #### 5-A：保存预测报告（Markdown）
-1. 调用 `write_to_file` 工具，将生成的全部 Markdown 预测报告内容，保存到 `worldcup_predictions/<A国>_vs_<B国>_<日期>.md` 文件中。
+1. 调用 `write_to_file` 工具，将生成的全部 Markdown 预测报告内容，保存到 `demo_site/<A国>_vs_<B国>_<日期>.md` 文件中。
 
 #### 5-B：写入进化记录本（关键！）
 2. 调用 `run_command` 工具执行以下命令，将本次预测数据写入进化记录本：
@@ -405,9 +405,9 @@ python3 .agents/skills/worldcup_predictor/scripts/evolution_ledger.py add "<A国
 ```
 
 #### 5-C：生成 HTML 预测网页（极度重要！必须执行！）
-3. 你**必须**为本次预测生成一个精美的暗色主题 HTML 网页，保存到 `worldcup_predictions/<a国英文小写>-vs-<b国英文小写>.html`。
+3. 你**必须**为本次预测生成一个精美的暗色主题 HTML 网页，保存到 `demo_site/<a国英文小写>-vs-<b国英文小写>.html`。
 
-**HTML 网页必须严格遵循以下设计规范**（参照 `worldcup_predictions/usa-vs-australia.html` 的模板）：
+**HTML 网页必须严格遵循以下设计规范**（参照 `demo_site/usa-vs-australia.html` 的模板）：
 
 ##### 设计系统要求：
 - **CSS 变量**：使用标准暗色主题变量（`--bg-primary: #060a14`, `--bg-card: rgba(14,20,36,0.85)`, `--accent-blue: #3b82f6`, `--accent-gold: #f6c744` 等）
@@ -441,7 +441,7 @@ python3 .agents/skills/worldcup_predictor/scripts/evolution_ledger.py add "<A国
 - 480px 断点：缩小国旗、比分字号、卡片内边距
 
 #### 5-D：更新首页 index.html（极度重要！必须执行！）
-4. 你**必须**在 `worldcup_predictions/index.html` 中添加本场比赛的卡片入口。
+4. 你**必须**在 `demo_site/index.html` 中添加本场比赛的卡片入口。
 
 **操作方式**：在 `<!-- Coming Soon Placeholder -->` 注释之前（即 `coming-soon` 占位卡片之前），插入一个新的比赛卡片 `<a>` 标签。
 
@@ -481,9 +481,9 @@ python3 .agents/skills/worldcup_predictor/scripts/evolution_ledger.py add "<A国
 5. 在回复的末尾加上：
 ```
 已为您生成世界杯预测存档：
-- 📄 Markdown: `worldcup_predictions/<A国>_vs_<B国>_<日期>.md`
-- 🌐 网页版: `worldcup_predictions/<a国英文>-vs-<b国英文>.html`
-- 🏠 首页已更新: `worldcup_predictions/index.html`
+- 📄 Markdown: `demo_site/<A国>_vs_<B国>_<日期>.md`
+- 🌐 网页版: `demo_site/<a国英文>-vs-<b国英文>.html`
+- 🏠 首页已更新: `demo_site/index.html`
 
 🧬 **进化提醒**：比赛结束后请告诉我真实比分！我会自动复盘、校准模型，让下一次预测更准！
 只需说："结果 <A国> X:X <B国>"

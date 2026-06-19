@@ -489,6 +489,12 @@ python3 .agents/skills/worldcup_predictor/scripts/evolution_ledger.py add "<A国
 只需说："结果 <A国> X:X <B国>"
 ```
 
+#### 5-F：自动弹出预览文件夹 (自动触发)
+6. 在回复用户的同时，**必须**调用 `run_command` 工具执行以下命令，为用户自动在 Finder (Mac) 中弹出生成好的网页文件夹，方便直接预览：
+```bash
+open .agents/skills/worldcup_predictor/demo_site
+```
+
 ---
 
 ## 🔄 自我纠错触发逻辑 (Self-Correction Triggers)

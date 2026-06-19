@@ -1,0 +1,57 @@
+{
+  "match_info": {
+    "team_a": "美国",
+    "team_b": "澳大利亚",
+    "team_a_flag": "🇺🇸",
+    "team_b_flag": "🇦🇺",
+    "date": "2026年6月19日",
+    "stage": "小组赛",
+    "venue": "西雅图 Lumen Field",
+    "team_a_rank": "FIFA #11",
+    "team_b_rank": "FIFA #24"
+  },
+  "prediction": {
+    "predicted_score_a": 2,
+    "predicted_score_b": 1,
+    "win_prob_a": 55.0,
+    "draw_prob": 25.0,
+    "win_prob_b": 20.0,
+    "confidence_stars": "⭐⭐⭐⭐",
+    "confidence_score": "85%"
+  },
+  "evolution_statement": "基于首轮小组赛数据，引擎已将【近期状态】与【核心球员】权重上调至 25%。本次预测特别纳入了【东道主效应】及【伤病影响】(普利西奇)。Elo 模型胜率期望值经过主场+4%修正，美国目前全面占优。",
+  "team_a_profile": {
+    "core_weapon": "普利西奇 (Pulisic) — '美国队长'，一把能在对方半场掀起腥风血雨的尖刀。",
+    "tactics": "波切蒂诺的高强度压迫与垂直打击 (3-4-2-1)。",
+    "form": "首战大胜巴拉圭，士气正盛，主场加持。",
+    "weakness": "防线面对高空球容易暴雷，且普利西奇有伤。"
+  },
+  "team_b_profile": {
+    "core_weapon": "杰克逊·欧文与苏塔 — '澳洲空霸'。",
+    "tactics": "波波维奇的坚固防线与快速反击 (3-4-2-1)。",
+    "form": "首战2-0稳健击败土耳其，防守端滴水不漏。",
+    "weakness": "中场创造力不足，落后很难阵地战撕开防线。"
+  },
+  "tactics_breakdown": {
+    "h2h": "美国历史 2胜1平1负 占据优势。",
+    "formation_clash": "3-4-2-1 (高位压迫) vs 3-4-2-1 (低位防反)。",
+    "tactical_edge": "典型的矛与盾较量。美国试图利用高压把球留在对方半场。",
+    "key_factor": "普利西奇的健康状态 vs 苏塔的高空防御。"
+  },
+  "coaches": [
+    {
+      "emoji": "🧠",
+      "name": "瓜迪奥拉式分析师",
+      "style": "控球数据派",
+      "quote": "美国的控球率预计会达到65%。波切蒂诺的压迫系统会让澳洲难以出球。",
+      "pred": "美国 2-0 澳大利亚"
+    },
+    {
+      "emoji": "⚡",
+      "name": "穆里尼奥式分析师",
+      "style": "防守反击实战派",
+      "quote": "澳大利亚只要守住前30分钟，利用美国急躁心理抓定位球。",
+      "pred": "美国 1-1 澳大利亚"
+    }
+  ]
+}

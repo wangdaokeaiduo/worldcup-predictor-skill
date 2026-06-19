@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>预测报告：{{ match_info.team_a }} vs {{ match_info.team_b }}</title>
+    <style>
+        body { font-family: sans-serif; background: #060a14; color: #fff; padding: 20px; line-height: 1.6; }
+        .hero { text-align: center; margin-bottom: 30px; }
+        .card { background: rgba(255,255,255,0.05); padding: 20px; border-radius: 12px; margin-bottom: 20px; }
+        .score { font-size: 48px; font-weight: bold; color: #3b82f6; }
+        .prob-bar { background: #333; height: 10px; border-radius: 5px; margin-top: 5px; }
+        .prob-fill { background: #3b82f6; height: 100%; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <h2>{{ match_info.team_a_flag }} {{ match_info.team_a }} vs {{ match_info.team_b }} {{ match_info.team_b_flag }}</h2>
+        <p>{{ match_info.date }} | {{ match_info.stage }} | {{ match_info.venue }}</p>
+        <div class="score">{{ prediction.predicted_score_a }} : {{ prediction.predicted_score_b }}</div>
+        <p>{{ prediction.confidence_stars }} 信心: {{ prediction.confidence_score }}</p>
+    </div>
+
+    <div class="card">
+        <h3>🧬 自我进化声明</h3>
+        <p>{{ evolution_statement }}</p>
+    </div>
+
+    <div class="card">
+        <h3>⚔️ 双方实力透视</h3>
+        <p><strong>{{ match_info.team_a }}：</strong>核心武器 - {{ team_a_profile.core_weapon }}</p>
+        <p><strong>{{ match_info.team_b }}：</strong>核心武器 - {{ team_b_profile.core_weapon }}</p>
+    </div>
+
+    <div class="card">
+        <h3>📊 概率预测</h3>
+        <div>{{ match_info.team_a }} 胜: {{ prediction.win_prob_a }}% <div class="prob-bar"><div class="prob-fill" style="width: {{ prediction.win_prob_a }}%"></div></div></div>
+        <div style="margin-top:10px;">平局: {{ prediction.draw_prob }}% <div class="prob-bar"><div class="prob-fill" style="background:#f6c744; width: {{ prediction.draw_prob }}%"></div></div></div>
+        <div style="margin-top:10px;">{{ match_info.team_b }} 胜: {{ prediction.win_prob_b }}% <div class="prob-bar"><div class="prob-fill" style="background:#10b981; width: {{ prediction.win_prob_b }}%"></div></div></div>
+    </div>
+</body>
+</html>

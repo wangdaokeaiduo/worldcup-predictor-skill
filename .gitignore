@@ -1,2 +1,4 @@
 backups/
 __pycache__/
+.env
+scripts/auto_predict.py

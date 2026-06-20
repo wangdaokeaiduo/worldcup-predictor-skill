@@ -430,9 +430,9 @@ python3 .agents/skills/worldcup_predictor/scripts/evolution_ledger.py add "<A国
 
 ##### 必须包含的交互与动画：
 - **IntersectionObserver 滚动入场动画**：所有 `.fade-up` 元素在进入视口时添加 `.visible` 类
-- **概率条动画**：`.prob-bar-fill` 的宽度从0过渡到 `data-width` 值
-- **比分计数器动画**：预测比分数字从0递增到目标值
-- **教练卡片展开/收起**：点击切换 `.expanded` 类
+- **概率条动画**：利用 IntersectionObserver 延迟 300ms 将 `.prob-bar-fill` 的 `width` 设为其 `data-width` 的值
+- **动态数字动画**：大比分数字从 0 滚动到目标值的简单 JS 动画
+- **全站密码锁 (localStorage)**：必须在 body 最前方添加包含 `#lock-screen` 且密码为 `035844` 的系统锁定页面，逻辑使用 `localStorage`，参考 `index.html` 现有的写法。**教练卡片展开/收起**：点击切换 `.expanded` 类
 
 ##### 必须遵循的移动端适配规则：
 - `<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">`

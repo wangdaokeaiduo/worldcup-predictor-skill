@@ -2,53 +2,6 @@
   "version": "1.0",
   "predictions": [
     {
-      "id": 1,
-      "timestamp": "2026-06-19T09:38:07.365187",
-      "match": "韩国 vs 墨西哥",
-      "team_a": "韩国",
-      "team_b": "墨西哥",
-      "predicted_score": {
-        "team_a": 1,
-        "team_b": 1
-      },
-      "predicted_probs": {
-        "win_a": 0.352,
-        "draw": 0.238,
-        "win_b": 0.41
-      },
-      "confidence": 3,
-      "key_reasoning": "墨西哥控球优势+主场之利被韩国钢铁意志和孙兴慜反击化解，1-1平局",
-      "dimension_weights_used": {
-        "player_status": 0.25,
-        "recent_form": 0.25,
-        "head_to_head": 0.15,
-        "tactical_fit": 0.15,
-        "odds_market": 0.1,
-        "elo_ranking": 0.05,
-        "external_factors": 0.05
-      },
-      "actual_result": {
-        "team_a": 1,
-        "team_b": 1
-      },
-      "reflection": {
-        "timestamp": "2026-06-19T16:41:02.004996",
-        "prediction_accuracy": 35,
-        "what_was_right": [
-          "✅ 墨西哥进球数完全命中 (1球)",
-          "✅ 总进球数预测接近 (预测2球 vs 实际1球)"
-        ],
-        "what_went_wrong": [
-          "❌ 胜平负方向判断错误 (预测: draw, 实际: win_b)"
-        ],
-        "root_causes": [
-          "可能高估/低估了某支球队的实力或状态"
-        ],
-        "dimension_adjustments": {}
-      },
-      "score": 100
-    },
-    {
       "id": 2,
       "timestamp": "2026-06-19T09:54:20.226847",
       "match": "韩国 vs 墨西哥",
@@ -307,9 +260,9 @@
       "psychology_bonus": 0.04,
       "tactical_bonus": 0.06
     },
-    "total_predictions": 5,
-    "correct_result_count": 4,
-    "correct_score_count": 3,
+    "total_predictions": 4,
+    "correct_result_count": 3,
+    "correct_score_count": 2,
     "avg_score_deviation": 0.6666666666666666
   }
 }

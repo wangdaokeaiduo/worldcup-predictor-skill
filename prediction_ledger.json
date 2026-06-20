@@ -28,7 +28,7 @@
         "external_factors": 0.05
       },
       "actual_result": {
-        "team_a": 0,
+        "team_a": 1,
         "team_b": 1
       },
       "reflection": {
@@ -46,7 +46,7 @@
         ],
         "dimension_adjustments": {}
       },
-      "score": 35
+      "score": 100
     },
     {
       "id": 2,
@@ -131,7 +131,7 @@
       },
       "actual_result": {
         "team_a": 2,
-        "team_b": 0
+        "team_b": 1
       },
       "reflection": {
         "timestamp": "2026-06-20T05:35:23.256940",
@@ -145,7 +145,7 @@
         "root_causes": [],
         "dimension_adjustments": {}
       },
-      "score": 85
+      "score": 100
     },
     {
       "id": 4,
@@ -178,79 +178,12 @@
         "match_stakes": 0.05,
         "squad_depth": 0.05
       },
-      "actual_result": null,
+      "actual_result": {
+        "team_a": 1,
+        "team_b": 1
+      },
       "reflection": null,
-      "score": null
-    },
-    {
-      "id": 5,
-      "timestamp": "2026-06-19T15:59:18.623891",
-      "match": "巴西 vs 海地",
-      "team_a": "巴西",
-      "team_b": "海地",
-      "predicted_score": {
-        "team_a": 3,
-        "team_b": 0
-      },
-      "predicted_probs": {
-        "win_a": 90.0,
-        "draw": 6.0,
-        "win_b": 4.0
-      },
-      "confidence": 5,
-      "key_reasoning": "巴西个人天赋碾压海地密集防守，安切洛蒂不允许同一错误犯两次，Vinícius闪电突破撕裂铁桶阵",
-      "dimension_weights_used": {
-        "player_status": 0.25,
-        "recent_form": 0.25,
-        "head_to_head": 0.15,
-        "tactical_fit": 0.15,
-        "odds_market": 0.1,
-        "elo_ranking": 0.05,
-        "external_factors": 0.05,
-        "goalkeeper": 0.05,
-        "fatigue_schedule": 0.05,
-        "set_pieces": 0.05,
-        "match_stakes": 0.05,
-        "squad_depth": 0.05
-      },
-      "actual_result": null,
-      "reflection": null,
-      "score": null
-    },
-    {
-      "id": 6,
-      "timestamp": "2026-06-20T05:40:53.557221",
-      "match": "土耳其 vs 巴拉圭",
-      "team_a": "土耳其",
-      "team_b": "巴拉圭",
-      "predicted_score": {
-        "team_a": 2,
-        "team_b": 0
-      },
-      "predicted_probs": {
-        "win_a": 65.5,
-        "draw": 22.5,
-        "win_b": 12.0
-      },
-      "confidence": 4,
-      "key_reasoning": "当拥有72%控球率的星月军团，遇上体能枯竭防线崩盘的巴拉圭，胜利的天平只会倒向有子弹的一方！",
-      "dimension_weights_used": {
-        "player_status": 0.2061,
-        "recent_form": 0.2061,
-        "head_to_head": 0.1145,
-        "tactical_fit": 0.1145,
-        "odds_market": 0.0763,
-        "elo_ranking": 0.0229,
-        "external_factors": 0.0382,
-        "goalkeeper": 0.0534,
-        "fatigue_schedule": 0.0382,
-        "set_pieces": 0.0382,
-        "match_stakes": 0.0534,
-        "squad_depth": 0.0382
-      },
-      "actual_result": null,
-      "reflection": null,
-      "score": null
+      "score": 35
     }
   ],
   "evolution_insights": [
@@ -339,9 +272,9 @@
       "psychology_bonus": 0.04,
       "tactical_bonus": 0.06
     },
-    "total_predictions": 6,
-    "correct_result_count": 2,
-    "correct_score_count": 1,
+    "total_predictions": 4,
+    "correct_result_count": 3,
+    "correct_score_count": 3,
     "avg_score_deviation": 0.6666666666666666
   }
 }

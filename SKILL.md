@@ -374,7 +374,8 @@ python3 .agents/skills/worldcup_predictor/scripts/evolution_ledger.py pending
 | 🥉 | X:X | XX.X% | 【同上】 |
 
 #### ⚽ 我的硬核预测
-> **最终比分预测：[A国] X : X 或 X : X [B国]** (列出概率最高的两个比分)
+> **🏆 最高概率比分：[A国] X : X [B国]** (明确写出最高概率的具体数值，如 16.0%)
+> **🥈 次高概率比分：[A国] X : X [B国]** (明确写出次高概率的具体数值，如 12.0%)
 >
 > **预测信心指数：⭐⭐⭐⭐☆ (X/5)**
 >
@@ -460,8 +461,9 @@ python3 .agents/skills/worldcup_predictor/scripts/evolution_ledger.py add "<A国
             <div class="rank">FIFA #<A排名></div>
         </div>
         <div class="match-score-box">
-            <div class="match-predicted-score"><首选比分A>:<首选比分B> <span style="font-size:16px;color:#888;">或 <次选比分A>:<次选比分B></span></div>
-            <div class="match-confidence">⭐×<信心数> 信心 <信心>/5</div>
+            <div class="match-predicted-score" style="font-size:24px;"><首选比分A>:<首选比分B> <span style="font-size:12px;color:var(--accent-red);">(最高概率 <最高概率>%)</span></div>
+            <div class="match-predicted-score" style="font-size:16px;color:#888;margin-top:4px;">或 <次选比分A>:<次选比分B> <span style="font-size:10px;">(次高概率 <次高概率>%)</span></div>
+            <div class="match-confidence" style="margin-top:8px;">⭐×<信心数> 信心 <信心>/5</div>
         </div>
         <div class="match-team">
             <div class="flag"><B国旗emoji></div>

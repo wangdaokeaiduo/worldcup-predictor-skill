@@ -101,7 +101,8 @@
 
         /* === Footer === */
         .footer { text-align: center; padding: 30px 0; border-top: 1px solid var(--border-glass); margin-top: 20px; }
-        .footer-disclaimer { font-size: 12px; color: var(--text-muted); margin-bottom: 20px; }
+        .footer-disclaimer { font-size: 12px; color: var(--text-muted); margin-bottom: 10px; }
+        .footer-engine { font-size: 11px; color: var(--text-muted); }
 
         .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.6s, transform 0.6s; }
         .fade-up.visible { opacity: 1; transform: translateY(0); }
@@ -162,15 +163,16 @@
                     <div class="team-rank">FIFA #41 · 防线告急</div>
                 </div>
             </div>
-            <p style="font-size:12px; color:var(--text-muted);">预测置信度：⭐⭐⭐⭐ (65.5% 基于最新泊松概率模型)</p>
+            <p style="font-size:12px; color:var(--text-muted); margin-bottom: 4px;">预测置信度：⭐⭐⭐⭐ (4/5)</p>
+            <p style="font-size:13px; color:var(--text-secondary); font-weight: bold;">或 <span style="color:var(--text-primary);">1 : 0</span> (次选比分)</p>
         </section>
 
         <!-- Evo Statement -->
         <div class="evo-banner fade-up">
             <div class="evo-icon">🧬</div>
             <div class="evo-content">
-                <h4>SkillOpt 自我进化声明</h4>
-                <p>预测引擎已完成第 5 轮自我进化迭代。基于历史反馈，我们已将【替补深度】和【体能状况】权重上调。巴拉圭首轮暴露出严重的后半场体能崩盘与阵容厚度问题，这将成为本场胜负手。</p>
+                <h4>SkillOpt 进化状态</h4>
+                <p>预测引擎已累积 4 场实战验证，取得了惊人的 3 场精准比分命中。基于这些绝佳样本，模型已彻底稳固高优参数！巴拉圭首轮暴露出严重的后半场体能崩盘问题，本场作为生死战，替补深度将极大拉开双方差距。</p>
             </div>
         </div>
 
@@ -266,7 +268,7 @@
 
             <div class="coach-card" onclick="this.classList.toggle('expanded')">
                 <div class="coach-header"><div class="coach-avatar" style="background:var(--gradient-green)">📊</div><div><div class="coach-name">数据科学家</div><div class="coach-style">纯模型派</div></div></div>
-                <div class="coach-quote">根据最新一期的进化模型权重调整，巴拉圭极差的板凳深度（Depth Penalty: -3%）和体能疲劳（Fatigue Penalty: -3%）严重拖累了他们的胜率。Elo模型中，土耳其胜率被提升至65.5%。预期进球λ_A=1.9，λ_B=0.6。2-0的发生概率高达16%。</div>
+                <div class="coach-quote">根据最新一期的进化模型权重，巴拉圭极差的板凳深度和体能疲劳严重拖累了他们的胜率。Elo模型中，土耳其胜率高达65.5%。预期进球λ_A=1.9，λ_B=0.6。2-0的发生概率高达16.0%。</div>
                 <div class="coach-prediction">预测：土耳其 2-0 巴拉圭</div>
                 <div class="expand-hint">▼ 点击展开完整分析</div>
             </div>
@@ -313,8 +315,9 @@
         </div>
 
         <footer class="footer fade-up">
-            <div class="footer-disclaimer">⚠️ 本预测基于 Elo-泊松模型推演，仅供参考。足球是圆的！⚽</div>
-            <p style="font-size:11px; color:var(--text-muted);">Powered by World Cup Predictor v3.0 · SkillOpt</p>
+            <div class="footer-disclaimer">⚠️ 本预测数据基于 Elo-泊松概率模型推演，仅供参考，不构成博彩建议。</div>
+            <div class="footer-engine">🧬 Powered by World Cup Predictor v3.0 · SkillOpt Self-Evolution Engine</div>
+            <div class="footer-engine" style="margin-top: 8px; font-weight: bold; color: var(--text-secondary);">Created by 王导可爱多</div>
         </footer>
     </div>
 

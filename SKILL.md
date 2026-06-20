@@ -45,6 +45,14 @@ version: "3.0"
 python3 .agents/skills/worldcup_predictor/scripts/evolution_ledger.py review
 ```
 
+### 步骤 0-A.5：智能评估与自动回撤（Autonomous Rollback）
+
+**⚠️ 自我决断权**：系统赋予你**最高决断权**。如果你在审阅 `review` 报告时，发现最近几次（如连续2场）预测接连出现严重偏差，或者整体胜率出现断崖式下跌，你**必须**自主决定触发“时光倒流”回撤协议！
+执行以下命令：
+1. `python3 .agents/skills/worldcup_predictor/scripts/evolution_ledger.py backups` 查看历史备份（系统自动保留最近15次修改记录）。
+2. `python3 .agents/skills/worldcup_predictor/scripts/evolution_ledger.py restore <目标备份文件名>` 将权重恢复至之前准确率极高的版本。
+3. 在随后输出的反思报告中，必须高亮声明：“⚠️ 引擎检测到近期胜率异常，已自主启动时空回撤，将底层权重系统强行覆盖恢复至高胜率时代备份 [备份名]！”
+
 ### 步骤 0-B：主动搜索并验证待验证预测，以及沉淀表现（极度重要！不得跳过！）
 
 **执行准则**：在做出任何新预测之前，你必须保证所有已结束比赛的球员表现、球队表现都已被录入。每次预测前，都要将之前有结果的比赛进行一次核对和录入。

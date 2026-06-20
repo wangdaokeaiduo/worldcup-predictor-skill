@@ -15,6 +15,8 @@
 import json
 import os
 import sys
+import shutil
+import glob
 from datetime import datetime
 
 LEDGER_FILE = os.path.join(os.path.dirname(__file__), '..', 'prediction_ledger.json')
@@ -82,6 +84,39 @@ def save_ledger(ledger):
     with open(LEDGER_FILE, 'w', encoding='utf-8') as f:
         json.dump(ledger, f, ensure_ascii=False, indent=2)
     print(f"✅ 预测记录本已保存到: {LEDGER_FILE}")
+    
+    # 自动备份逻辑
+    backup_dir = os.path.join(os.path.dirname(LEDGER_FILE), "backups")
+    os.makedirs(backup_dir, exist_ok=True)
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    backup_path = os.path.join(backup_dir, f"ledger_backup_{timestamp}.json")
+    shutil.copy2(LEDGER_FILE, backup_path)
+    
+    # 清理多余备份，保留最近15次
+    backups = sorted(glob.glob(os.path.join(backup_dir, "ledger_backup_*.json")))
+    if len(backups) > 15:
+        for old_backup in backups[:-15]:
+            os.remove(old_backup)
+
+def list_backups():
+    backup_dir = os.path.join(os.path.dirname(LEDGER_FILE), "backups")
+    backups = sorted(glob.glob(os.path.join(backup_dir, "ledger_backup_*.json")), reverse=True)
+    if not backups:
+        print("📁 目前没有可用的备份。")
+        return
+    print("=== 最近 15 次进化备份 ===")
+    for b in backups:
+        print(f" - {os.path.basename(b)}")
+
+def restore_backup(filename):
+    backup_dir = os.path.join(os.path.dirname(LEDGER_FILE), "backups")
+    backup_path = os.path.join(backup_dir, filename)
+    if not os.path.exists(backup_path):
+        print(f"❌ 找不到备份文件: {backup_path}")
+        return
+    shutil.copy2(backup_path, LEDGER_FILE)
+    print(f"🚀 已成功将引擎状态回滚至: {filename}")
+
 
 def add_prediction(team_a, team_b, predicted_score_a, predicted_score_b,
                    win_prob_a, draw_prob, win_prob_b,
@@ -358,6 +393,8 @@ if __name__ == "__main__":
         print("  python evolution_ledger.py pending         - 查看待验证预测")
         print("  python evolution_ledger.py add <A> <B> <sA> <sB> <pA> <pD> <pB> <conf> <reason>")
         print("  python evolution_ledger.py result <id> <sA> <sB>  - 记录真实结果")
+        print("  python evolution_ledger.py backups         - 查看所有可用备份")
+        print("  python evolution_ledger.py restore <file>  - 恢复指定备份")
         sys.exit(0)
 
     action = sys.argv[1]
@@ -381,5 +418,9 @@ if __name__ == "__main__":
         )
     elif action == "result" and len(sys.argv) >= 5:
         record_actual_result(int(sys.argv[2]), int(sys.argv[3]), int(sys.argv[4]))
+    elif action == "backups":
+        list_backups()
+    elif action == "restore" and len(sys.argv) >= 3:
+        restore_backup(sys.argv[2])
     else:
         print("❌ 无效的命令参数")

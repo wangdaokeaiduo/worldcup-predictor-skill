@@ -60,9 +60,15 @@ python3 .agents/skills/worldcup_predictor/scripts/evolution_ledger.py pending
    搜索词：[A国] vs [B国] 2026 World Cup result score 比分 结果
    ```
 
-2. **如果搜索到了真实结果**，立即录入验证：
+2. **当你得到比分反馈后，你必须依次执行：**
+   1. **调用脚本写入结果**：
    ```bash
-   python3 .agents/skills/worldcup_predictor/scripts/evolution_ledger.py result <预测ID> <真实比分A> <真实比分B>
+   python3 .agents/skills/worldcup_predictor/scripts/evolution_ledger.py result <预测ID> <A队进球> <B队进球>
+   ```
+   2. **沉淀球员数据**：搜索该场比赛表现突出的核心球员，使用 `player_tracker.py update` 更新微观数据库：
+   ```bash
+   # 针对每个表现突出的球员，执行一次更新：
+   python3 .agents/skills/worldcup_predictor/scripts/player_tracker.py update "<球员名>" "<国家>" <新增进球> <新增助攻> "<当前体能与状态>" "<核心事件（如：梅开二度）>"
    ```
 
 3. **验证完成后，必须同步更新首页 `demo_site/index.html` 的统计数据**：
@@ -114,6 +120,12 @@ python3 .agents/skills/worldcup_predictor/scripts/evolution_ledger.py pending
 **⚠️ 极度重要：每次调用必须完全重新进行全网检索！世界杯期间球员状态瞬息万变，昨天的数据今天就是垃圾！严禁使用缓存数据！**
 
 ### 第一阶段：十二大维度数据采集 (12-Dimensional Data Mining)
+
+**⚠️ 必做动作**：在开始收集数据前，你必须先调用命令，从我们的本地微观数据库中拉取两队核心球员的往期记录（如进球、助攻、体能状况）：
+```bash
+python3 .agents/skills/worldcup_predictor/scripts/player_tracker.py query [A国] [B国]
+```
+将这些底层数据深度结合到下方的【维度1】和【维度9】分析中。
 
 你必须调用 `search_web` 工具，针对本场比赛进行**至少12轮**定向搜索，确保信息覆盖以下维度：
 
@@ -506,7 +518,8 @@ open .agents/skills/worldcup_predictor/demo_site
 当用户说出类似 "结果 韩国 1:2 墨西哥" 的话时：
 1. 执行 `python3 .agents/skills/worldcup_predictor/scripts/evolution_ledger.py pending` 找到对应预测ID
 2. 执行 `python3 .agents/skills/worldcup_predictor/scripts/evolution_ledger.py result <ID> <真实比分A> <真实比分B>`
-3. 读取生成的反思报告，向用户输出一份简明的"赛后复盘"：
+3. **沉淀球员数据**：执行 `python3 .agents/skills/worldcup_predictor/scripts/player_tracker.py update "<球员名>" "<国家>" <新增进球> <新增助攻> "<当前体能与状态>" "<核心事件>"` 记录本场表现突出的核心球员。
+4. 读取生成的反思报告，向用户输出一份简明的"赛后复盘"：
 
 ```markdown
 ### 🧬 赛后复盘 & 模型进化报告

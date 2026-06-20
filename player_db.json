@@ -1,0 +1,64 @@
+{
+  "players": {
+    "Vinícius Júnior": {
+      "team": "巴西",
+      "goals": 1,
+      "assists": 1,
+      "matches_played": 1,
+      "stamina_status": "状态绝佳，体能充沛",
+      "key_events": [
+        "对阵海地打入闪电进球并贡献助攻"
+      ]
+    },
+    "Rodrygo": {
+      "team": "巴西",
+      "goals": 1,
+      "assists": 0,
+      "matches_played": 1,
+      "stamina_status": "轻微疲劳",
+      "key_events": [
+        "对阵海地打入精彩远射"
+      ]
+    },
+    "Christian Pulisic": {
+      "team": "美国",
+      "goals": 1,
+      "assists": 1,
+      "matches_played": 1,
+      "stamina_status": "体能下降",
+      "key_events": [
+        "对阵澳大利亚打入点球并助攻"
+      ]
+    },
+    "Scott McTominay": {
+      "team": "苏格兰",
+      "goals": 0,
+      "assists": 1,
+      "matches_played": 1,
+      "stamina_status": "体能极佳",
+      "key_events": [
+        "对阵摩洛哥送出关键助攻"
+      ]
+    },
+    "Heung-min Son": {
+      "team": "韩国",
+      "goals": 0,
+      "assists": 0,
+      "matches_played": 1,
+      "stamina_status": "轻伤，跑动受限",
+      "key_events": [
+        "对阵墨西哥被严密防守限制"
+      ]
+    },
+    "Santiago Giménez": {
+      "team": "墨西哥",
+      "goals": 1,
+      "assists": 0,
+      "matches_played": 1,
+      "stamina_status": "状态火热",
+      "key_events": [
+        "对阵韩国打入唯一进球"
+      ]
+    }
+  }
+}

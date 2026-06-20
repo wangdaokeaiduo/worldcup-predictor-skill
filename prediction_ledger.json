@@ -140,6 +140,43 @@
     },
     {
       "id": 5,
+      "timestamp": "2026-06-19T15:59:18.623891",
+      "match": "巴西 vs 海地",
+      "team_a": "巴西",
+      "team_b": "海地",
+      "predicted_score": {
+        "team_a": 3,
+        "team_b": 0
+      },
+      "predicted_probs": {
+        "win_a": 90.0,
+        "draw": 6.0,
+        "win_b": 4.0
+      },
+      "confidence": 5,
+      "key_reasoning": "巴西个人天赋碾压海地密集防守，安切洛蒂不允许同一错误犯两次，Vinícius闪电突破撕裂铁桶阵",
+      "dimension_weights_used": {
+        "player_status": 0.2061,
+        "recent_form": 0.2061,
+        "head_to_head": 0.1145,
+        "tactical_fit": 0.1145,
+        "odds_market": 0.0763,
+        "elo_ranking": 0.0229,
+        "external_factors": 0.0382,
+        "goalkeeper": 0.0534,
+        "fatigue_schedule": 0.0382,
+        "set_pieces": 0.0382,
+        "match_stakes": 0.0534,
+        "squad_depth": 0.0382
+      },
+      "actual_result": {
+        "team_a": 3,
+        "team_b": 0
+      },
+      "score": 100
+    },
+    {
+      "id": 5,
       "timestamp": "2026-06-20T10:44:41.059161",
       "match": "土耳其 vs 巴拉圭",
       "team_a": "土耳其",
@@ -260,9 +297,9 @@
       "psychology_bonus": 0.04,
       "tactical_bonus": 0.06
     },
-    "total_predictions": 4,
-    "correct_result_count": 3,
-    "correct_score_count": 2,
+    "total_predictions": 5,
+    "correct_result_count": 4,
+    "correct_score_count": 3,
     "avg_score_deviation": 0.6666666666666666
   }
 }

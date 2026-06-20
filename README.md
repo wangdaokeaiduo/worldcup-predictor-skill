@@ -69,6 +69,9 @@ python3 scripts/evolution_ledger.py review
 ### 4. 🎨 示例效果展示 (Live Demo)
 我们在 `demo_site/` 目录下为你保留了真实生成的示例网页。**点击下方链接即可直接在浏览器中预览渲染后的精美网页效果**：
 - 🌐 **赛事大厅导航**：[点击预览赛事大厅](https://wangdaokeaiduo.github.io/worldcup-predictor-skill/demo_site/index.html)
+- 🇹🇷 **土耳其 vs 巴拉圭预测**：[点击预览土耳其 vs 巴拉圭](https://wangdaokeaiduo.github.io/worldcup-predictor-skill/demo_site/turkey-vs-paraguay.html)
+- 🇧🇷 **巴西 vs 海地预测**：[点击预览巴西 vs 海地](https://wangdaokeaiduo.github.io/worldcup-predictor-skill/demo_site/brazil-vs-haiti.html)
+- 🏴󠁧󠁢󠁳󠁣󠁴󠁿 **苏格兰 vs 摩洛哥预测**：[点击预览苏格兰 vs 摩洛哥](https://wangdaokeaiduo.github.io/worldcup-predictor-skill/demo_site/scotland-vs-morocco.html)
 - 🇺🇸 **美国 vs 澳大利亚预测**：[点击预览美国 vs 澳大利亚](https://wangdaokeaiduo.github.io/worldcup-predictor-skill/demo_site/usa-vs-australia.html)
 - 🇰🇷 **韩国 vs 墨西哥预测**：[点击预览韩国 vs 墨西哥](https://wangdaokeaiduo.github.io/worldcup-predictor-skill/demo_site/korea-vs-mexico.html)
 

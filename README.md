@@ -1,7 +1,10 @@
-# 🏆 World Cup Predictor Skill (2026 世界杯全景预测引擎)
+# ⚽ 世界杯比分预测引擎 v3.0 — 十二维自我进化版
+(World Cup Match Predictor with 12-Dimensional Self-Evolution)
 
 **✍️ 作者：王导可爱多**
+**🔐 演示站点统一访问密码：`035844`**
 
+## 技能简介
 基于大语言模型、12 维度深度分析、Elo-泊松概率模型，并内嵌 **SkillOpt 自我进化机制** 的超强赛事预测 AI Skill。
 
 ## ✨ 核心特性 (Features)
